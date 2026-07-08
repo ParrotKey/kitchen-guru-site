@@ -9,6 +9,7 @@ privacy, terms, community, and account-deletion pages.
 
 - Current path: GitHub Pages under `ParrotKey/kitchen-guru-site`.
 - Live URL: https://parrotkey.github.io/kitchen-guru-site/
+- Clickable app demo: https://parrotkey.github.io/kitchen-guru-site/demo/
 - Vercel is intentionally not connected from this session because the available
   Vercel account/team scope is `ibg`, and Kitchen Guru must not be deployed
   under Iconic Brand Group infrastructure.
@@ -21,4 +22,5 @@ privacy, terms, community, and account-deletion pages.
 - `support.html` - Support page.
 - `community.html` - Community Guidelines.
 - `deletion.html` - Account deletion instructions.
+- `demo/` - clickable app mockup for partner/product review.
 - `assets/` - logo, legal CSS, and local Three.js module.

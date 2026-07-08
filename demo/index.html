@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kitchen Guru — clickable mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  /* ─────────────────────────────────────────────────────────────────────
+     Kitchen Guru — Bright Tropical token system.
+     Aqua + Orchid pulled from the actual brand SVG (assets/kitchen-guru-
+     logo.svg). Tangerine + Coral-Pink + Cream + Plum-Ink from the brief.
+     This is the SAME palette the real app's src/theme/colors.ts will adopt.
+  ───────────────────────────────────────────────────────────────────── */
+  :root{
+    --c-aqua:#26ead3;        /* brand teal — from the SVG */
+    --c-aqua-soft:#a9f4e8;
+    --c-aqua-deep:#13b09e;
+    --c-orange:#ff7a1a;      /* hot tangerine — primary CTA */
+    --c-orange-soft:#ffb578;
+    --c-purple:#9d0dea;      /* orchid — from the SVG */
+    --c-purple-soft:#d6aef0;
+    --c-pink:#ff4d8d;        /* "need players" coral pink */
+    --c-pink-soft:#ffb3cd;
+    --cream:#fff8ef;
+    --cream-2:#fdeede;
+    --ink:#2a1840;
+    --ink-soft:#6b5a7a;
+    --shadow:rgba(157,13,234,.22);
+
+    --brand:var(--c-purple);
+    --brand-deep:#6a09a0;
+    --accent:var(--c-orange);
+    --accent-soft:var(--c-orange-soft);
+    --fresh:var(--c-aqua);
+    --fresh-soft:var(--c-aqua-soft);
+    --fresh-deep:var(--c-aqua-deep);
+    --pop:var(--c-pink);
+    --pop-soft:var(--c-pink-soft);
+
+    --font-display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+    --font-body:'DM Sans','Segoe UI',system-ui,sans-serif;
+
+    --phone-w:332px;
+    --phone-h:710px;
+    --phone-radius:46px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:var(--font-body);color:var(--ink);
+    background:
+      radial-gradient(1000px 640px at 8% -10%, var(--fresh-soft), transparent 58%),
+      radial-gradient(820px 560px at 102% -4%, var(--pop-soft), transparent 52%),
+      radial-gradient(760px 700px at 88% 112%, var(--c-purple-soft), transparent 58%),
+      radial-gradient(700px 520px at 0% 108%, var(--accent-soft), transparent 55%),
+      var(--cream);
+    min-height:100%;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ── Stage ─────────────────────────────────────────────────────────── */
+  .stage-meta{
+    position:fixed;top:18px;left:24px;z-index:200;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .stage-meta strong{color:var(--brand);}
+
+  .stage{
+    display:grid;grid-template-columns:60px 1fr 60px;
+    place-items:center;min-height:100vh;
+    padding:48px 16px 110px;gap:16px;position:relative;z-index:1;
+  }
+  .stage .nav{
+    background:rgba(255,255,255,.65);
+    border:1px solid rgba(157,13,234,.18);
+    color:var(--brand);
+    width:44px;height:44px;border-radius:22px;
+    cursor:pointer;font-size:22px;line-height:1;
+    transition:transform .15s, background .15s;
+    box-shadow:0 8px 18px -8px var(--shadow);
+  }
+  .stage .nav:hover{background:#fff;transform:scale(1.05);}
+  .stage .nav:disabled{opacity:.25;cursor:not-allowed;}
+  .stage .nav:focus{outline:2px solid var(--accent);outline-offset:2px;}
+
+  .phone{
+    position:relative;width:var(--phone-w);height:var(--phone-h);
+    border-radius:var(--phone-radius);
+    background:linear-gradient(160deg,#3a1d63,#241040);padding:13px;
+    box-shadow:0 44px 76px -24px rgba(42,24,64,.55),
+               0 0 0 2px rgba(255,255,255,.07) inset;
+  }
+  .phone .notch{
+    position:absolute;top:13px;left:50%;transform:translateX(-50%);
+    width:120px;height:26px;background:#1b0d33;border-radius:0 0 16px 16px;z-index:6;
+  }
+  .screen{
+    position:relative;width:100%;height:100%;border-radius:34px;
+    overflow:hidden;background:var(--cream);
+    display:none;flex-direction:column;
+  }
+  .screen.active{display:flex;}
+  .screen.black{background:#000;color:#fff;}
+  .screen.cream{background:var(--cream);color:var(--ink);}
+
+  /* status bar */
+  .statusbar{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 22px 6px;font-size:12px;font-weight:700;color:var(--ink);
+    flex:0 0 auto;
+  }
+  .statusbar.white{color:#fff;}
+
+  /* header inside a screen */
+  .scr-head{padding:8px 20px 10px;}
+  .scr-kicker{font-size:11px;font-weight:800;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--fresh-deep);}
+  .scr-title{font-family:var(--font-display);font-weight:700;font-size:23px;
+    color:var(--brand-deep);line-height:1.05;margin-top:3px;}
+
+  /* tabs (bottom nav) */
+  .tabnav{
+    flex:0 0 auto;background:#fff;
+    border-top:1px solid rgba(157,13,234,.1);
+    padding:8px 4px 18px;
+    display:grid;grid-template-columns:repeat(4,1fr);
+  }
+  .tabnav button{
+    background:none;border:none;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;gap:3px;
+    font-family:var(--font-body);font-size:9.5px;font-weight:700;
+    color:var(--ink-soft);padding:5px 0;transition:color .2s;
+  }
+  .tabnav button.active{color:var(--accent);}
+  .tabnav .tab-emoji{font-size:20px;line-height:1;}
+
+  /* button system */
+  .btn{
+    appearance:none;border:none;cursor:pointer;
+    border-radius:14px;padding:12px 18px;min-height:44px;
+    font-family:var(--font-body);font-size:14px;font-weight:700;
+    display:inline-flex;align-items:center;justify-content:center;gap:7px;
+    transition:transform .12s, box-shadow .15s, background .2s;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn-block{display:flex;width:100%;}
+  .btn.primary{background:var(--accent);color:#fff;
+    box-shadow:0 12px 24px -8px var(--accent);}
+  .btn.primary.checked{background:var(--brand);box-shadow:0 12px 24px -8px var(--brand);}
+  .btn.brand{background:var(--brand);color:#fff;
+    box-shadow:0 12px 24px -8px var(--brand);}
+  .btn.pop{background:var(--pop);color:#fff;
+    box-shadow:0 12px 24px -8px var(--pop);}
+  .btn.ghost-pink{
+    background:rgba(255,77,141,.08);
+    border:2px solid var(--pop);color:var(--pop);
+  }
+  .btn.ghost-brand{
+    background:rgba(157,13,234,.06);
+    border:1.5px solid rgba(157,13,234,.3);color:var(--brand);
+    font-size:12px;
+  }
+  .btn.secondary{
+    background:#fff;color:var(--ink);
+    border:1px solid rgba(42,24,64,.12);
+  }
+  .btn-row{display:flex;gap:8px;}
+  .btn-row .btn{flex:1;}
+
+  /* field */
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field-label{
+    font-size:10.5px;font-weight:800;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink-soft);
+  }
+  .field-input{
+    background:#fff;border:1px solid rgba(42,24,64,.12);border-radius:12px;
+    padding:12px 14px;min-height:44px;color:var(--ink);
+    font-size:15px;font-family:var(--font-body);
+  }
+  .field-hint{font-size:12px;color:var(--ink-soft);}
+
+  /* tagline / pills row reused */
+  .pill{
+    font-size:11.5px;font-weight:700;padding:6px 11px;border-radius:999px;
+    background:rgba(157,13,234,.10);color:var(--brand);
+    display:inline-flex;align-items:center;gap:5px;
+  }
+  .pill.tangerine{background:rgba(255,122,26,.16);color:var(--accent);}
+  .pill.aqua{background:rgba(38,234,211,.18);color:var(--fresh-deep);}
+
+  /* ─────────────────────────────────────────────────────────────────────
+     INTRO — black, brand logo, "auto-advances in the real app"
+  ───────────────────────────────────────────────────────────────────── */
+  .intro-body{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:0 32px;gap:18px;
+  }
+  .intro-logo{
+    width:240px;height:auto;display:block;
+    animation:logoIn .9s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .intro-tag{
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:#a89bba;animation:logoIn 1.1s .25s both;
+  }
+  @keyframes logoIn{from{opacity:0;transform:translateY(10px) scale(.96);}to{opacity:1;transform:none;}}
+
+  /* ─────────────────────────────────────────────────────────────────────
+     AUTH — bright tropical (NOT purple). Cream bg, full brand.
+  ───────────────────────────────────────────────────────────────────── */
+  .auth-body{flex:1;padding:8px 24px 18px;display:flex;flex-direction:column;gap:14px;overflow-y:auto;}
+  .auth-logo-row{display:flex;align-items:center;gap:10px;}
+  .auth-logo-row svg{width:90px;height:auto;}
+  .auth-h{
+    font-family:var(--font-display);font-weight:800;font-size:28px;
+    line-height:1;color:var(--brand-deep);margin-top:6px;letter-spacing:-.01em;
+  }
+  .auth-sub{font-size:14px;color:var(--ink-soft);line-height:1.45;}
+  .auth-fineprint{font-size:11px;color:var(--ink-soft);text-align:center;margin-top:8px;line-height:1.45;}
+  .auth-fineprint b{color:var(--accent);}
+
+  /* skill picker chips on sign-up */
+  .skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .skill-chip{
+    background:#fff;border:1.5px solid rgba(42,24,64,.1);border-radius:14px;
+    padding:12px 11px;text-align:left;cursor:pointer;
+    font-family:var(--font-body);
+  }
+  .skill-chip.selected{
+    border-color:var(--brand);background:rgba(157,13,234,.06);
+  }
+  .skill-chip b{font-size:13px;color:var(--ink);display:block;font-weight:700;}
+  .skill-chip span{font-size:11px;color:var(--ink-soft);}
+
+  /* ─────────────────────────────────────────────────────────────────────
+     MAP
+  ───────────────────────────────────────────────────────────────────── */
+  .map-view{
+    flex:1;position:relative;overflow:hidden;
+    background:linear-gradient(125deg,rgba(38,234,211,.20),transparent 42%),var(--cream-2);
+  }
+  .water{
+    position:absolute;border-radius:40% 60% 55% 45%/55% 45% 55% 45%;
+    background:linear-gradient(160deg,var(--fresh-soft),var(--fresh));opacity:.55;
+  }
+  .w1{width:240px;height:200px;left:-70px;bottom:-40px;}
+  .w2{width:150px;height:130px;right:-50px;top:54px;}
+  .road{position:absolute;background:rgba(255,255,255,.9);}
+  .greenpatch{position:absolute;border-radius:24px;background:rgba(157,13,234,.10);}
+  .search{
+    position:absolute;top:64px;left:14px;right:14px;background:#fff;border-radius:14px;
+    padding:11px 14px;font-size:13px;color:var(--ink-soft);
+    box-shadow:0 8px 20px -8px var(--shadow);display:flex;align-items:center;gap:9px;font-weight:600;
+  }
+  .search .pip{width:8px;height:8px;border-radius:50%;background:var(--fresh-deep);}
+  .push{
+    position:absolute;top:10px;left:12px;right:12px;z-index:20;
+    background:rgba(255,255,255,.97);border-radius:18px;padding:11px 13px;
+    display:flex;gap:11px;align-items:center;
+    box-shadow:0 16px 34px -10px var(--shadow);
+    border:1px solid rgba(157,13,234,.12);
+    animation:dropin .6s 1.1s cubic-bezier(.2,.9,.2,1) both;
+  }
+  .push .ic{
+    width:38px;height:38px;border-radius:11px;background:var(--accent);
+    color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;flex:none;
+    box-shadow:0 6px 14px -4px var(--accent);
+  }
+  .push .body b{font-size:13px;color:var(--ink);display:block;}
+  .push .body span{font-size:11.5px;color:var(--ink-soft);}
+  .push .when{font-size:10px;color:var(--ink-soft);align-self:flex-start;margin-left:auto;white-space:nowrap;}
+
+  .pin{
+    position:absolute;display:flex;flex-direction:column;align-items:center;
+    cursor:pointer;transform:translate(-50%,-100%);transition:transform .2s;
+  }
+  .pin:hover{transform:translate(-50%,-104%) scale(1.06);}
+  .pin .bubble{
+    background:var(--accent);color:#fff;font-weight:800;font-size:14px;
+    min-width:34px;height:34px;padding:0 9px;border-radius:18px;
+    display:flex;align-items:center;justify-content:center;gap:5px;
+    box-shadow:0 8px 16px -4px var(--accent);border:2.5px solid #fff;
+  }
+  .pin .stem{width:2px;height:9px;background:#fff;margin-top:-1px;}
+  .pin .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);}
+  .pin.lit .bubble{background:var(--brand);}
+  .pin.lit .dot{background:var(--brand);}
+  .pin.cool .bubble{background:var(--fresh-deep);box-shadow:0 8px 16px -4px var(--fresh-deep);}
+  .pin.cool .dot{background:var(--fresh-deep);}
+
+  .pin.needs .flag{
+    position:absolute;bottom:46px;left:50%;transform:translateX(-50%);
+    white-space:nowrap;background:var(--pop);color:#fff;font-weight:800;font-size:11px;
+    padding:6px 11px;border-radius:999px;
+    box-shadow:0 10px 18px -5px var(--pop);border:2px solid #fff;
+    animation:bounce 1.1s infinite;display:flex;align-items:center;gap:5px;z-index:5;
+  }
+  .pin.needs .flag::after{
+    content:"";position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);
+    border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:7px solid var(--pop);
+  }
+  .pin.needs .ring{
+    position:absolute;bottom:-6px;left:50%;width:34px;height:34px;border-radius:50%;
+    transform:translateX(-50%);background:var(--pop);opacity:.35;animation:ping 1.6s infinite;
+  }
+
+  .callout{
+    position:absolute;left:12px;right:12px;bottom:14px;background:#fff;
+    border-radius:22px;padding:0;overflow:hidden;
+    box-shadow:0 22px 44px -14px var(--shadow);
+    border:1px solid rgba(157,13,234,.10);
+    animation:pop .3s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .co-photos{display:flex;height:84px;gap:2px;}
+  .co-photos div{flex:1;background-size:cover;background-position:center;}
+  .co-ph1{background:linear-gradient(150deg,var(--fresh),var(--brand));}
+  .co-ph2{background:linear-gradient(150deg,var(--accent),var(--pop));}
+  .co-ph3{background:linear-gradient(150deg,var(--brand),var(--accent));}
+  .co-photos .more{
+    flex:.5;background:rgba(42,24,64,.7);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;font-weight:700;
+  }
+  .co-inner{padding:13px 15px 15px;}
+  .co-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+  .co-top h4{font-family:var(--font-display);font-size:17px;color:var(--brand-deep);line-height:1.1;}
+  .co-dist{
+    font-size:11px;font-weight:700;color:var(--fresh-deep);
+    background:rgba(38,234,211,.18);padding:4px 8px;border-radius:999px;white-space:nowrap;
+  }
+  .co-meta{
+    font-size:12px;color:var(--ink-soft);margin-top:4px;
+    display:flex;flex-wrap:wrap;gap:8px;
+  }
+  .co-meta b{color:var(--ink);}
+  .co-need{
+    margin-top:10px;background:rgba(255,77,141,.12);border:1px dashed var(--pop);
+    border-radius:12px;padding:9px 11px;display:flex;align-items:center;gap:9px;
+  }
+  .co-need .b{font-size:18px;}
+  .co-need .t{font-size:12px;font-weight:700;color:var(--pop);}
+  .co-need .t span{display:block;font-weight:500;color:var(--ink-soft);font-size:11px;}
+  .co-anon{
+    margin-top:11px;font-size:11.5px;color:var(--ink-soft);
+    display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  }
+  .co-anon b{color:var(--brand);}
+  .co-chips{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+  .co-chips span{
+    font-size:10.5px;font-weight:600;color:var(--brand);
+    background:rgba(157,13,234,.12);padding:5px 9px;border-radius:9px;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────────
+     COURT (rich detail, bulletins folded in)
+  ───────────────────────────────────────────────────────────────────── */
+  .court-body{flex:1;overflow-y:auto;padding:0 18px 16px;}
+  .court-photo{
+    height:128px;border-radius:18px;
+    background:linear-gradient(150deg,var(--fresh),var(--brand));
+    position:relative;overflow:hidden;margin-bottom:6px;
+  }
+  .court-photo::after{
+    content:"";position:absolute;inset:0;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect width='60' height='60' fill='none' stroke='%23ffffff' stroke-opacity='.2' stroke-width='1'/%3E%3C/svg%3E");
+  }
+  .court-photo .live{
+    position:absolute;top:10px;left:10px;background:rgba(255,255,255,.95);
+    color:var(--accent);font-weight:800;font-size:11px;padding:5px 10px;
+    border-radius:999px;display:flex;align-items:center;gap:6px;
+  }
+  .court-photo .live i{
+    width:7px;height:7px;border-radius:50%;background:var(--accent);
+    display:inline-block;animation:blink 1.4s infinite;
+  }
+  .thumb-row{display:flex;gap:6px;margin:8px 0 14px;}
+  .thumb-row div{flex:1;height:46px;border-radius:10px;}
+  .t1{background:linear-gradient(150deg,var(--accent),var(--pop));}
+  .t2{background:linear-gradient(150deg,var(--brand),var(--fresh));}
+  .t3{background:linear-gradient(150deg,var(--pop),var(--accent));}
+  .t4{background:rgba(42,24,64,.7);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
+
+  .sec-h{
+    font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-soft);margin:6px 0 9px;
+  }
+  .bands{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+  .band{display:flex;align-items:center;gap:10px;font-size:13px;}
+  .band .lab{width:92px;font-weight:600;color:var(--ink);}
+  .band .bar{flex:1;height:9px;border-radius:6px;background:rgba(42,24,64,.08);overflow:hidden;}
+  .band .fill{height:100%;border-radius:6px;}
+  .band .n{font-weight:700;color:var(--ink-soft);width:16px;text-align:right;font-size:12px;}
+
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
+  .info-grid .cell{
+    background:#fff;border-radius:12px;padding:10px 12px;
+    box-shadow:0 6px 16px -12px var(--shadow);
+  }
+  .info-grid .cell .k{
+    font-size:10px;color:var(--ink-soft);font-weight:600;
+    text-transform:uppercase;letter-spacing:.05em;
+  }
+  .info-grid .cell .v{font-size:13.5px;font-weight:700;color:var(--ink);margin-top:2px;}
+  .amen{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px;}
+  .amen span{
+    font-size:11.5px;font-weight:600;color:var(--brand);
+    background:rgba(157,13,234,.12);padding:6px 10px;border-radius:10px;
+  }
+
+  .post{
+    background:#fff;border-radius:18px;padding:15px;
+    box-shadow:0 10px 26px -16px var(--shadow);
+    border:1px solid rgba(157,13,234,.08);margin-bottom:12px;
+  }
+  .post .who{display:flex;align-items:center;gap:9px;margin-bottom:9px;}
+  .post .av{
+    width:30px;height:30px;border-radius:50%;
+    background:linear-gradient(150deg,var(--fresh-deep),var(--brand));
+    color:#fff;font-weight:700;font-size:13px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .post .nm{font-weight:700;font-size:13px;color:var(--ink);}
+  .post .tg{font-size:11px;color:var(--fresh-deep);font-weight:600;}
+  .post .txt{font-size:13.5px;line-height:1.45;color:var(--ink);}
+  .needflag{
+    margin-top:10px;display:inline-flex;align-items:center;gap:7px;
+    background:var(--pop);color:#fff;font-weight:800;font-size:12px;
+    padding:7px 12px;border-radius:999px;
+    box-shadow:0 8px 16px -6px var(--pop);
+  }
+  .ticker{display:flex;align-items:center;gap:10px;margin-top:12px;}
+  .going-btn{
+    border:none;cursor:pointer;font-family:var(--font-body);font-weight:700;
+    font-size:13px;padding:9px 15px;border-radius:12px;
+    background:var(--brand);color:#fff;transition:transform .15s,background .2s;
+    display:flex;align-items:center;gap:7px;
+  }
+  .going-btn.off{background:rgba(157,13,234,.12);color:var(--brand);}
+  .count{font-size:13px;font-weight:700;color:var(--ink);}
+  .count small{font-weight:500;color:var(--ink-soft);}
+  .friend-note{
+    margin-top:9px;font-size:11.5px;color:var(--ink-soft);
+    display:flex;align-items:center;gap:6px;
+  }
+  .friend-note b{color:var(--brand);}
+  .disclaimer{
+    font-size:10px;color:var(--ink-soft);opacity:.85;
+    text-align:left;padding:2px 2px 4px;line-height:1.4;
+  }
+
+  .verify-card{
+    margin:0 0 14px;background:rgba(157,13,234,.08);
+    border:1px solid rgba(157,13,234,.25);border-radius:14px;padding:12px;
+  }
+  .verify-card .vh{font-size:12px;font-weight:700;color:var(--brand-deep);
+    display:flex;align-items:center;gap:7px;}
+  .verify-card .vq{font-size:13px;color:var(--ink);margin:6px 0 10px;line-height:1.4;}
+  .verify-card .vq b{color:var(--brand-deep);}
+  .verify-card .vbtns{display:flex;gap:8px;}
+  .verify-card .vbtns button{
+    flex:1;border:none;cursor:pointer;font-family:var(--font-body);font-weight:700;
+    font-size:13px;padding:9px;border-radius:11px;
+  }
+  .verify-card .yes{background:var(--fresh-deep);color:#fff;}
+  .verify-card .no{background:rgba(42,24,64,.08);color:var(--ink-soft);}
+  .verify-card .vprog{font-size:10.5px;color:var(--ink-soft);margin-top:8px;}
+
+  .addphoto{display:flex;gap:8px;margin:0 0 14px;}
+  .addphoto .slot{
+    flex:1;height:54px;border-radius:12px;
+    background:rgba(157,13,234,.06);
+    border:1.5px dashed rgba(157,13,234,.35);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:2px;color:var(--brand);font-size:10px;font-weight:700;cursor:pointer;
+  }
+  .addphoto .slot .ic{font-size:18px;}
+  .suggest-row{display:flex;gap:8px;margin-top:9px;}
+
+  /* ─────────────────────────────────────────────────────────────────────
+     YOU (profile = friends + stats + badges + alerts)
+  ───────────────────────────────────────────────────────────────────── */
+  .you-body{flex:1;overflow-y:auto;padding:4px 20px 14px;}
+  .you-top{display:flex;align-items:center;gap:13px;margin-bottom:16px;}
+  .you-big-av{
+    width:58px;height:58px;border-radius:50%;
+    background:linear-gradient(150deg,var(--accent-soft),var(--accent));
+    color:#fff;font-weight:800;font-size:22px;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 18px -6px var(--accent);
+  }
+  .you-nm{font-family:var(--font-display);font-weight:700;font-size:19px;color:var(--brand-deep);}
+  .you-tier{
+    display:inline-block;margin-top:3px;font-size:11px;font-weight:700;
+    color:var(--brand);background:rgba(157,13,234,.14);
+    padding:4px 9px;border-radius:999px;
+  }
+  .you-tier.founding{margin-left:6px;background:rgba(255,122,26,.16);color:var(--accent);}
+  .plus-list{
+    display:grid;gap:7px;margin:8px 0 2px;
+  }
+  .plus-list span{
+    background:#fff;border:1px solid rgba(42,24,64,.08);
+    border-radius:12px;padding:8px 10px;font-size:11px;
+    color:var(--brand-deep);font-weight:700;
+  }
+
+  .stat-row{display:flex;gap:10px;margin-bottom:16px;}
+  .stat{
+    flex:1;background:#fff;border-radius:14px;padding:12px;text-align:center;
+    box-shadow:0 8px 20px -14px var(--shadow);
+  }
+  .stat b{display:block;font-family:var(--font-display);font-size:21px;color:var(--accent);}
+  .stat span{font-size:10.5px;color:var(--ink-soft);font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+
+  .badge-h{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:9px;}
+  .badges{display:flex;gap:10px;margin-bottom:16px;}
+  .bdg{
+    flex:1;aspect-ratio:1;border-radius:16px;
+    background:rgba(38,234,211,.16);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:5px;font-size:9px;font-weight:700;color:var(--brand);
+    text-align:center;padding:6px;
+  }
+  .bdg.locked{opacity:.5;background:rgba(42,24,64,.06);color:var(--ink-soft);}
+  .bdg .ic{font-size:20px;}
+
+  .alert-pref{
+    margin-top:6px;background:#fff;border-radius:14px;padding:13px;
+    box-shadow:0 8px 20px -14px var(--shadow);
+    display:flex;align-items:center;gap:11px;
+  }
+  .alert-pref .ic{
+    width:34px;height:34px;border-radius:10px;background:var(--pop);
+    color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;
+  }
+  .alert-pref .tx{flex:1;}
+  .alert-pref .tx b{font-size:12.5px;color:var(--ink);display:block;}
+  .alert-pref .tx span{font-size:10.5px;color:var(--ink-soft);}
+  .toggle{
+    width:42px;height:24px;border-radius:999px;background:var(--brand);
+    position:relative;flex:none;
+  }
+  .toggle::after{
+    content:"";position:absolute;top:2px;right:2px;width:20px;height:20px;
+    border-radius:50%;background:#fff;
+  }
+  .alert-courts{
+    margin-top:6px;background:#fff;border-radius:14px;padding:13px;
+    box-shadow:0 8px 20px -14px var(--shadow);display:grid;gap:10px;
+  }
+  .alert-courts .head{display:flex;align-items:center;gap:11px;}
+  .alert-courts .ic{
+    width:34px;height:34px;border-radius:10px;background:var(--pop);
+    color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;flex:none;
+  }
+  .alert-courts .tx{flex:1;}
+  .alert-courts .tx b{font-size:12.5px;color:var(--ink);display:block;}
+  .alert-courts .tx span{font-size:10.5px;color:var(--ink-soft);}
+  .court-search{
+    border:1px solid rgba(42,24,64,.1);border-radius:12px;
+    background:rgba(157,13,234,.05);padding:9px 10px;
+    color:var(--ink-soft);font-size:11px;font-weight:600;
+  }
+  .selected-courts,.court-picks{display:grid;gap:7px;}
+  .selected-court,.court-pick{
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
+    border-radius:12px;padding:9px 10px;font-size:11px;font-weight:700;
+  }
+  .selected-court{background:rgba(38,234,211,.14);color:var(--fresh-deep);}
+  .court-pick{background:#fff;border:1px dashed rgba(157,13,234,.24);color:var(--brand);}
+  .court-mini{font-size:9.5px;color:var(--ink-soft);font-weight:600;margin-top:2px;}
+  .court-action{
+    border:0;border-radius:999px;background:var(--brand);color:#fff;
+    padding:5px 9px;font-size:10px;font-weight:800;cursor:pointer;
+  }
+  .court-action.remove{background:rgba(42,24,64,.08);color:var(--ink-soft);}
+
+  .friends-section{margin-top:16px;}
+  .friends-section .row-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+  .friends-section .row-h .badge-h{margin:0;}
+  .friends-section .row-h .more-link{font-size:11px;color:var(--brand);font-weight:700;}
+  .friend-card{
+    background:#fff;border-radius:14px;padding:11px 12px;
+    box-shadow:0 8px 20px -14px var(--shadow);
+    display:flex;align-items:center;gap:10px;margin-bottom:8px;
+  }
+  .friend-card .av{
+    width:36px;height:36px;border-radius:50%;
+    color:#fff;font-weight:700;font-size:14px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .friend-card .av.green{background:linear-gradient(150deg,var(--fresh),var(--fresh-deep));}
+  .friend-card .av.coral{background:linear-gradient(150deg,var(--pop),var(--accent));}
+  .friend-card .av.purple{background:linear-gradient(150deg,var(--brand),var(--pop));}
+  .friend-card .nm{font-weight:700;font-size:13px;color:var(--ink);}
+  .friend-card .lvl{font-size:11px;color:var(--ink-soft);}
+
+  /* ─────────────────────────────────────────────────────────────────────
+     CHAT (list + thread)
+  ───────────────────────────────────────────────────────────────────── */
+  .msgs-body{flex:1;overflow-y:auto;padding:0 14px 14px;}
+  .paid-banner{
+    display:flex;align-items:center;gap:9px;
+    background:linear-gradient(120deg,var(--brand),var(--pop));
+    color:#fff;border-radius:14px;padding:10px 13px;margin-bottom:12px;
+    box-shadow:0 10px 22px -10px var(--shadow);
+  }
+  .paid-banner .lk{font-size:16px;}
+  .paid-banner b{font-size:12.5px;display:block;}
+  .paid-banner span{font-size:10.5px;opacity:.92;}
+
+  .thread{
+    display:flex;align-items:center;gap:11px;padding:11px 8px;
+    border-radius:14px;cursor:pointer;transition:background .15s;
+  }
+  .thread:hover{background:rgba(157,13,234,.06);}
+  .thread .av{
+    width:42px;height:42px;border-radius:50%;color:#fff;font-weight:700;
+    font-size:15px;display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .thread .mid{flex:1;min-width:0;}
+  .thread .nm{font-weight:700;font-size:13.5px;color:var(--ink);
+    display:flex;align-items:center;gap:6px;}
+  .thread .vbadge{font-size:9px;color:var(--fresh-deep);}
+  .thread .pv{font-size:12px;color:var(--ink-soft);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;}
+  .thread .meta{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex:none;}
+  .thread .time{font-size:10px;color:var(--ink-soft);}
+  .thread .unread{
+    width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;
+    font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;
+  }
+  .divider{height:1px;background:rgba(42,24,64,.06);}
+  .msg-note{
+    font-size:10.5px;color:var(--ink-soft);text-align:center;
+    padding:8px 16px 0;line-height:1.4;
+  }
+  .msg-note b{color:var(--brand);}
+
+  /* chat thread */
+  .thread-head{
+    padding:14px 18px 10px;display:flex;align-items:center;gap:10px;
+    border-bottom:1px solid rgba(42,24,64,.06);
+  }
+  .thread-head .av{
+    width:36px;height:36px;border-radius:50%;
+    background:linear-gradient(150deg,var(--fresh-deep),var(--brand));
+    color:#fff;font-weight:700;font-size:14px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .thread-head .nm{font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--ink);}
+  .thread-head .sub{font-size:11px;color:var(--fresh-deep);font-weight:600;}
+  .thread-back{
+    background:none;border:none;cursor:pointer;color:var(--brand);
+    font-family:var(--font-body);font-weight:700;font-size:14px;padding:4px 6px;
+  }
+  .messages{flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:9px;}
+  .bubble{border-radius:16px;padding:10px 13px;max-width:78%;font-size:13.5px;line-height:1.4;}
+  .bubble.mine{align-self:flex-end;background:var(--brand);color:#fff;border-bottom-right-radius:5px;}
+  .bubble.theirs{
+    align-self:flex-start;background:#fff;color:var(--ink);
+    border:1px solid rgba(42,24,64,.08);border-bottom-left-radius:5px;
+  }
+  .bubble .when{font-size:10px;opacity:.7;margin-top:4px;}
+  .composer{
+    padding:10px 14px 12px;display:flex;gap:8px;align-items:center;
+    border-top:1px solid rgba(42,24,64,.06);background:#fff;
+  }
+  .composer .input{
+    flex:1;background:var(--cream);border:1px solid rgba(42,24,64,.08);
+    border-radius:18px;padding:10px 14px;font-size:13px;color:var(--ink-soft);
+  }
+  .composer .send{
+    width:38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;
+    border:none;font-size:18px;cursor:pointer;flex:none;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────────
+     Breadcrumb
+  ───────────────────────────────────────────────────────────────────── */
+  .breadcrumb{
+    position:fixed;bottom:14px;left:0;right:0;
+    display:flex;justify-content:center;gap:4px;flex-wrap:wrap;
+    padding:0 16px;z-index:100;
+  }
+  .breadcrumb button{
+    background:rgba(255,255,255,.85);
+    border:1px solid rgba(157,13,234,.18);
+    color:var(--ink-soft);font-family:var(--font-body);
+    font-size:10.5px;padding:5px 11px;border-radius:12px;cursor:pointer;
+    text-transform:uppercase;letter-spacing:.06em;font-weight:600;
+  }
+  .breadcrumb button.current{
+    background:var(--brand);color:#fff;border-color:var(--brand);
+  }
+  .breadcrumb button:hover{color:var(--ink);}
+
+  @media (max-width: 560px) {
+    :root {
+      --phone-w: min(332px, calc(100vw - 42px));
+      --phone-h: calc(var(--phone-w) * 2.1386);
+      --phone-radius: 38px;
+    }
+
+    body {
+      min-height: 100svh;
+    }
+
+    .stage-meta {
+      position: static;
+      padding: 14px 16px 0;
+      text-align: center;
+      font-size: 10px;
+    }
+
+    .stage {
+      grid-template-columns: 1fr;
+      min-height: calc(100svh - 26px);
+      padding: 14px 10px 118px;
+      gap: 10px;
+    }
+
+    .stage .nav {
+      position: fixed;
+      top: auto;
+      bottom: 58px;
+      z-index: 220;
+      width: 42px;
+      height: 42px;
+      box-shadow: 0 14px 36px rgba(42, 24, 64, .22);
+    }
+
+    #prev { left: 12px; }
+    #next { right: 12px; }
+
+    .phone {
+      max-width: calc(100vw - 42px);
+      max-height: calc(100svh - 154px);
+    }
+
+    .breadcrumb {
+      bottom: 10px;
+      justify-content: flex-start;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      padding: 0 12px 4px;
+      scrollbar-width: none;
+    }
+
+    .breadcrumb::-webkit-scrollbar {
+      display: none;
+    }
+
+    .breadcrumb button {
+      flex: 0 0 auto;
+      font-size: 10px;
+      padding: 6px 10px;
+    }
+  }
+
+  /* animations */
+  @keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+  @keyframes pop{from{opacity:0;transform:translateY(8px) scale(.97);}to{opacity:1;transform:none;}}
+  @keyframes dropin{from{opacity:0;transform:translateY(-26px);}to{opacity:1;transform:none;}}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:.25;}}
+  @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-7px);}}
+  @keyframes ping{0%{transform:translateX(-50%) scale(.6);opacity:.55;}100%{transform:translateX(-50%) scale(2.4);opacity:0;}}
+</style>
+</head>
+<body>
+<div class="stage-meta">Kitchen Guru · <strong>clickable mockup</strong></div>
+
+<div class="stage">
+  <button class="nav" id="prev" aria-label="Previous screen">‹</button>
+
+  <div class="phone"><div class="notch"></div>
+
+    <!-- ─────────────────────────── INTRO ─────────────────────────── -->
+    <div class="screen black active" data-screen="intro">
+      <div class="statusbar white">
+        <span>9:41</span>
+        <span style="opacity:.6;">Kitchen Guru</span>
+        <span>●&nbsp;●&nbsp;●</span>
+      </div>
+      <div class="intro-body">
+        <img class="intro-logo" src="kitchen-guru-logo.svg" alt="Kitchen Guru" />
+        <span class="intro-tag">Find your next game</span>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────── SIGN-UP ─────────────────────────── -->
+    <div class="screen cream" data-screen="sign-up">
+      <div class="statusbar"><span>9:41</span><span style="color:var(--ink-soft);">Sign up</span><span>●&nbsp;●&nbsp;●</span></div>
+      <div class="auth-body">
+        <img class="intro-logo" src="kitchen-guru-logo.svg" alt="" style="width:120px;align-self:center;margin:4px 0 -4px;" />
+        <h2 class="auth-h">Get started</h2>
+        <p class="auth-sub">Create a free account and claim a founding beta spot if one is still open.</p>
+        <div class="plus-list">
+          <span>Kitchen Guru+ unlocks direct messages with friends</span>
+          <span>Saved court alerts for the courts you choose</span>
+          <span>Premium badges, court-captain tools, and beta perks</span>
+        </div>
+        <div class="field">
+          <span class="field-label">Email</span>
+          <div class="field-input">you@home.com</div>
+        </div>
+        <button class="btn primary btn-block" onclick="go('sign-up-dob')">Create account</button>
+        <p class="auth-fineprint">Founding beta members keep Guru+ included. <b>500 spots left</b>.</p>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────── SIGN-UP DOB ─────────────────────────── -->
+    <div class="screen cream" data-screen="sign-up-dob">
+      <div class="statusbar"><span>9:41</span><span style="color:var(--ink-soft);">18+ only</span><span>●&nbsp;●&nbsp;●</span></div>
+      <div class="auth-body">
+        <h2 class="auth-h">How old are you?</h2>
+        <p class="auth-sub">We use it once to confirm you're 18+. Stored age stays on your profile; we don't share it.</p>
+        <div class="field">
+          <span class="field-label">Birth date</span>
+          <div class="field-input">1990-06-15</div>
+          <span class="field-hint">YYYY-MM-DD</span>
+        </div>
+        <button class="btn primary btn-block" onclick="go('sign-up-profile')">Continue</button>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────── SIGN-UP PROFILE ─────────────────────────── -->
+    <div class="screen cream" data-screen="sign-up-profile">
+      <div class="statusbar"><span>9:41</span><span style="color:var(--ink-soft);">Almost there</span><span>●&nbsp;●&nbsp;●</span></div>
+      <div class="auth-body">
+        <h2 class="auth-h">Pick a name &amp; skill</h2>
+        <p class="auth-sub">Friends see this name. Strangers see only counts.</p>
+        <div class="field">
+          <span class="field-label">Player name</span>
+          <div class="field-input">kitchen.killer</div>
+        </div>
+        <div class="field">
+          <span class="field-label">Skill</span>
+          <div class="skill-grid">
+            <button class="skill-chip"><b>Social</b><span>I just play to hang out</span></button>
+            <button class="skill-chip"><b>Beginner</b><span>Still learning the dink</span></button>
+            <button class="skill-chip selected"><b>Intermediate</b><span>3.0–3.5-ish</span></button>
+            <button class="skill-chip"><b>Expert</b><span>4.0 and up</span></button>
+          </div>
+        </div>
+        <button class="btn primary btn-block" onclick="go('map')">Create profile</button>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────── SIGN-IN ─────────────────────────── -->
+    <div class="screen cream" data-screen="sign-in">
+      <div class="statusbar"><span>9:41</span><span style="color:var(--ink-soft);">Sign in</span><span>●&nbsp;●&nbsp;●</span></div>
+      <div class="auth-body">
+        <img class="intro-logo" src="kitchen-guru-logo.svg" alt="" style="width:120px;align-self:center;margin:4px 0 -4px;" />
+        <h2 class="auth-h">Welcome back</h2>
+        <p class="auth-sub">Sign in with your Kitchen Guru password.</p>
+        <div class="field">
+          <span class="field-label">Email</span>
+          <div class="field-input">you@home.com</div>
+        </div>
+        <button class="btn primary btn-block" onclick="go('map')">Sign in</button>
+        <button class="btn secondary btn-block" onclick="go('sign-up')" style="margin-top:4px;">Create an account instead</button>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────── MAP-ANON (just the map) ─────────────────────────── -->
+    <div class="screen cream" data-screen="map-anon">
+      <div class="statusbar"><span>9:41</span><span style="color:var(--ink-soft);">Spring Hill, FL</span><span>●&nbsp;●&nbsp;●</span></div>
+      <div class="scr-head"><div class="scr-kicker">Where to today</div><div class="scr-title">Players near you</div></div>
+      <div class="map-view">
+        <div class="water w1"></div><div class="water w2"></div>
+        <div class="road" style="top:40%;left:0;right:0;height:8px;"></div>
+        <div class="road" style="top:0;bottom:0;left:46%;width:8px;"></div>
+        <div class="road" style="top:64%;left:0;right:0;height:6px;"></div>
+        <div class="greenpatch" style="top:48%;left:10%;width:90px;height:70px;"></div>
+        <div class="greenpatch" style="top:16%;right:14%;width:70px;height:60px;"></div>
+        <div class="search"><span class="pip"></span> Spring Hill, FL · 6 courts active</div>
+        <div class="pin lit needs" style="left:30%;top:56%;">
+          <span class="ring"></span><div class="flag">🚩 Need 2!</div>
+          <div class="bubble">7</div><div class="stem"></div><div class="dot"></div>
+        </div>
+        <div class="pin" style="left:66%;top:32%;"><div class="bubble">4</div><div class="stem"></div><div class="dot"></div></div>
+        <div class="pin needs" style="left:80%;top:66%;"><span class="ring"></span><div class="flag">🚩 Need 1</div><div class="bubble">3</div><div class="stem"></div><div class="dot"></div></div>
+        <div class="pin cool" style="left:22%;top:26%;"><div class="bubble">11</div><div class="stem"></div><div class="dot"></div></div>
+        <div style="position:absolute;left:14px;right:14px;bottom:14px;">
+          <button class="btn brand btn-block" onclick="go('sign-up')">Create free account</button>
+        </div>
+      </div>
+      <nav class="tabnav">
+        <button class="active"><span class="tab-emoji">🗺️</span>Map</button>
+        <button onclick="go('court')"><span class="tab-emoji">📍</span>Courts</button>
+        <button onclick="go('chat-list')"><span class="tab-emoji">💬</span>Chat</button>
+        <button onclick="go('you')"><span class="tab-emoji">👤</span>You</button>
+      </nav>
+    </div>
+
+    <!-- ─────────────────────────── MAP (signed in, push banner + callout) ─────────────────────────── -->
+    <div class="screen cream" data-screen="map">
+      <div class="statusbar"><span>9:41</span><span style="color:var(--ink-soft);">Spring Hill, FL</span><span>●&nbsp;●&nbsp;●</span></div>
+      <div class="scr-head"><div class="scr-kicker">Where to today</div><div class="scr-title">Players near you</div></div>
+      <div class="map-view">
+        <div class="water w1"></div><div class="water w2"></div>
+        <div class="road" style="top:40%;left:0;right:0;height:8px;"></div>
+        <div class="road" style="top:0;bottom:0;left:46%;width:8px;"></div>
+        <div class="road" style="top:64%;left:0;right:0;height:6px;"></div>
+        <div class="greenpatch" style="top:48%;left:10%;width:90px;height:70px;"></div>
+        <div class="greenpatch" style="top:16%;right:14%;width:70px;height:60px;"></div>
+
+        <div class="push">
+          <div class="ic">🚩</div>
+          <div class="body"><b>2 players needed at a saved court</b><span>Veterans Memorial Park · doubles starting</span></div>
+          <div class="when">now</div>
+        </div>
+        <div class="search"><span class="pip"></span> Spring Hill, FL · 6 courts active</div>
+
+        <div class="pin lit needs" style="left:30%;top:56%;" onclick="go('court')">
+          <span class="ring"></span><div class="flag">🚩 Need 2!</div>
+          <div class="bubble">7</div><div class="stem"></div><div class="dot"></div>
+        </div>
+        <div class="pin" style="left:66%;top:32%;"><div class="bubble">4</div><div class="stem"></div><div class="dot"></div></div>
+        <div class="pin needs" style="left:80%;top:66%;"><span class="ring"></span><div class="flag">🚩 Need 1</div><div class="bubble">3</div><div class="stem"></div><div class="dot"></div></div>
+        <div class="pin cool" style="left:22%;top:26%;"><div class="bubble">11</div><div class="stem"></div><div class="dot"></div></div>
+
+        <div class="callout" onclick="go('court')" style="cursor:pointer;">
+          <div class="co-photos"><div class="co-ph1"></div><div class="co-ph2"></div><div class="co-ph3"></div><div class="more">+9</div></div>
+          <div class="co-inner">
+            <div class="co-top"><h4>Veterans Memorial Park</h4><span class="co-dist">0.8 mi</span></div>
+            <div class="co-meta"><span>★ <b>4.8</b> (62)</span><span><b>6</b> courts</span><span>Open <b>till dusk</b></span><span>Outdoor</span></div>
+            <div class="co-need"><div class="b">🚩</div><div class="t">Need 2 for doubles<span>A game's waiting on a 4th &amp; 5th — get there!</span></div></div>
+            <div class="co-anon">👥 <b>7 here</b> · 3 social · 2 intermediate · 2 expert</div>
+            <div class="co-chips"><span>💡 Lights</span><span>🚻 Bathroom</span><span>💧 Water</span><span>🧱 Wall</span><span>🛝 Playground</span></div>
+          </div>
+        </div>
+      </div>
+      <nav class="tabnav">
+        <button class="active"><span class="tab-emoji">🗺️</span>Map</button>
+        <button onclick="go('court')"><span class="tab-emoji">📍</span>Courts</button>
+        <button onclick="go('chat-list')"><span class="tab-emoji">💬</span>Chat</button>
+        <button onclick="go('you')"><span class="tab-emoji">👤</span>You</button>
+      </nav>
+    </div>
+
+    <!-- ─────────────────────────── COURT DETAIL (with bulletins folded in) ─────────────────────────── -->
+    <div class="screen cream" data-screen="court">
+      <div class="statusbar"><span>9:41</span><span style="color:var(--ink-soft);">Live</span><span>●&nbsp;●&nbsp;●</span></div>
+      <div class="scr-head"><div class="scr-kicker">Live now</div><div class="scr-title">Veterans Memorial Park</div></div>
+      <div class="court-body">
+        <div class="court-photo"><span class="live"><i></i> 7 checked in</span></div>
+        <div class="thumb-row"><div class="t1"></div><div class="t2"></div><div class="t3"></div><div class="t4">+9</div></div>
+
+        <div class="co-need" style="margin:0 0 14px;">
+          <div class="b">🚩</div>
+          <div class="t">Need 2 for doubles<span>Posted 4 min ago · tap to join the game</span></div>
+        </div>
+
+        <div class="sec-h">Who's here · anonymous</div>
+        <div class="bands">
+          <div class="band"><span class="lab">Social</span>
+            <div class="bar"><div class="fill" style="width:43%;background:var(--fresh-deep);"></div></div>
+            <span class="n">3</span>
+          </div>
+          <div class="band"><span class="lab">Intermediate</span>
+            <div class="bar"><div class="fill" style="width:29%;background:var(--brand);"></div></div>
+            <span class="n">2</span>
+          </div>
+          <div class="band"><span class="lab">Expert</span>
+            <div class="bar"><div class="fill" style="width:29%;background:var(--accent);"></div></div>
+            <span class="n">2</span>
+          </div>
+        </div>
+
+        <div class="sec-h">Bulletins · this court</div>
+        <div class="post">
+          <div class="who"><div class="av">PN</div><div><div class="nm">Parrot Neil</div><div class="tg">📍 Veterans Memorial Park</div></div></div>
+          <div class="txt">Doubles going right now — we're short! Come run some games 🏓</div>
+          <div class="needflag">🚩 Need 2 players · now</div>
+          <div class="ticker">
+            <button class="going-btn" id="goBtn" onclick="toggleGoing()"><span id="goIcon">✓</span> <span id="goLabel">Going</span></button>
+            <span class="count"><span id="goCount">3</span> <small>going</small></span>
+          </div>
+          <div class="friend-note">👋 <b>Hector</b> is going · you're friends</div>
+        </div>
+        <div class="post">
+          <div class="who"><div class="av">DR</div><div><div class="nm">Dink Rodriguez</div><div class="tg">📍 Veterans Memorial Park</div></div></div>
+          <div class="txt">Anyone up for evening games once the lights come on? ~6:30 🌆</div>
+          <div class="ticker"><button class="going-btn off" onclick="this.classList.toggle('off')">+ Going</button><span class="count">4 <small>going</small></span></div>
+        </div>
+        <p class="disclaimer">Posts are by players, for fun &amp; coordination only — not events hosted or endorsed by Kitchen Guru.</p>
+
+        <div class="sec-h">The details</div>
+        <div class="info-grid">
+          <div class="cell"><div class="k">Hours</div><div class="v">Dawn – Dusk</div></div>
+          <div class="cell"><div class="k">Courts</div><div class="v">6 · outdoor</div></div>
+          <div class="cell"><div class="k">Surface</div><div class="v">Acrylic hard</div></div>
+          <div class="cell"><div class="k">Nets</div><div class="v">Permanent</div></div>
+          <div class="cell"><div class="k">Cost</div><div class="v">Free · public</div></div>
+          <div class="cell"><div class="k">Busiest</div><div class="v">Eves &amp; AM</div></div>
+        </div>
+
+        <div class="sec-h">Amenities</div>
+        <div class="amen"><span>💡 Lights</span><span>🚻 Bathroom</span><span>💧 Water</span><span>🧱 Wall</span><span>🛝 Playground</span><span>🅿️ Parking</span><span>🪑 Shade</span></div>
+
+        <div class="sec-h">Help verify · you're here</div>
+        <div class="verify-card">
+          <div class="vh">🔎 A player suggested an update</div>
+          <div class="vq">Does this park have <b>7 courts</b> (listed as 4)?</div>
+          <div class="vbtns"><button class="yes">Yes, 7 ✓</button><button class="no">No / not sure</button></div>
+          <div class="vprog">2 of 3 confirms · auto-updates at 3 · expires in 60 days</div>
+        </div>
+
+        <div class="sec-h">Photos</div>
+        <div class="addphoto">
+          <div class="slot"><span class="ic">📷</span>Add photo</div>
+          <div class="slot"><span class="ic">🖼️</span>From library</div>
+        </div>
+
+        <button class="btn primary btn-block" id="checkBtn" onclick="toggleCheck()">Check in here</button>
+        <div class="btn-row" style="margin-top:9px;">
+          <button class="btn ghost-pink">🚩 Post "need players"</button>
+        </div>
+        <div class="suggest-row">
+          <button class="btn ghost-brand">✏️ Suggest an edit</button>
+          <button class="btn ghost-brand">➕ Add amenity</button>
+        </div>
+      </div>
+      <nav class="tabnav">
+        <button onclick="go('map')"><span class="tab-emoji">🗺️</span>Map</button>
+        <button class="active"><span class="tab-emoji">📍</span>Courts</button>
+        <button onclick="go('chat-list')"><span class="tab-emoji">💬</span>Chat</button>
+        <button onclick="go('you')"><span class="tab-emoji">👤</span>You</button>
+      </nav>
+    </div>
+
+    <!-- ─────────────────────────── CHAT LIST ─────────────────────────── -->
+    <div class="screen cream" data-screen="chat-list">
+      <div class="statusbar"><span>9:41</span><span style="color:var(--ink-soft);">Direct messages</span><span>●&nbsp;●&nbsp;●</span></div>
+      <div class="scr-head"><div class="scr-kicker">Direct messages</div><div class="scr-title">Messages</div></div>
+      <div class="msgs-body">
+        <div class="paid-banner">
+          <span class="lk">🔓</span>
+          <div><b>Kitchen Guru+ included for founding beta</b><span>DM friends, save court alerts, unlock badges, and test captain tools</span></div>
+        </div>
+        <div class="thread" onclick="go('chat-thread')">
+          <div class="av" style="background:linear-gradient(150deg,var(--fresh-deep),var(--brand));">HC</div>
+          <div class="mid">
+            <div class="nm">Hector C. <span class="vbadge">✓ verified by 4</span></div>
+            <div class="pv">Yeah I'm at Veterans now — courts 3 &amp; 4 open 🏓</div>
+          </div>
+          <div class="meta"><div class="time">2m</div><div class="unread">2</div></div>
+        </div>
+        <div class="divider"></div>
+        <div class="thread">
+          <div class="av" style="background:linear-gradient(150deg,var(--accent),var(--pop));">MJ</div>
+          <div class="mid"><div class="nm">Maria J.</div><div class="pv">Good games today! Same time Thursday?</div></div>
+          <div class="meta"><div class="time">1h</div></div>
+        </div>
+        <div class="divider"></div>
+        <div class="thread">
+          <div class="av" style="background:linear-gradient(150deg,var(--brand),var(--accent));">DR</div>
+          <div class="mid"><div class="nm">Dink Rodriguez</div><div class="pv">You: I'll bring an extra paddle</div></div>
+          <div class="meta"><div class="time">Tue</div></div>
+        </div>
+        <div class="divider"></div>
+        <div class="thread">
+          <div class="av" style="background:linear-gradient(150deg,var(--pop),var(--fresh-deep));">SK</div>
+          <div class="mid"><div class="nm">Sam K.</div><div class="pv">Nice meeting you at Anderson Snow!</div></div>
+          <div class="meta"><div class="time">Wed</div></div>
+        </div>
+        <p class="msg-note">You can only message <b>friends</b> you've connected with. Requests &amp; spam stay out.</p>
+      </div>
+      <nav class="tabnav">
+        <button onclick="go('map')"><span class="tab-emoji">🗺️</span>Map</button>
+        <button onclick="go('court')"><span class="tab-emoji">📍</span>Courts</button>
+        <button class="active"><span class="tab-emoji">💬</span>Chat</button>
+        <button onclick="go('you')"><span class="tab-emoji">👤</span>You</button>
+      </nav>
+    </div>
+
+    <!-- ─────────────────────────── CHAT THREAD ─────────────────────────── -->
+    <div class="screen cream" data-screen="chat-thread">
+      <div class="statusbar"><span>9:41</span><span style="color:var(--ink-soft);">Hector C.</span><span>●&nbsp;●&nbsp;●</span></div>
+      <div class="thread-head">
+        <button class="thread-back" onclick="go('chat-list')">‹</button>
+        <div class="av">HC</div>
+        <div>
+          <div class="nm">Hector C.</div>
+          <div class="sub">✓ verified by 4 · at Veterans now</div>
+        </div>
+      </div>
+      <div class="messages">
+        <div class="bubble theirs">Red Hook tomorrow 9 AM?<div class="when">9:32 AM</div></div>
+        <div class="bubble mine">I'm in. Want me to post it on the bulletin and pick up a 4th?<div class="when">9:33 AM</div></div>
+        <div class="bubble theirs">Do it. Indoor backup if rain?<div class="when">9:34 AM</div></div>
+        <div class="bubble mine">Pier 36, same time. I'll tag both.<div class="when">9:35 AM</div></div>
+        <div class="bubble theirs">🏓 see you 9 sharp<div class="when">9:36 AM</div></div>
+      </div>
+      <div class="composer">
+        <div class="input">Say something…</div>
+        <button class="send">→</button>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────── YOU (profile = friends + stats + badges + alerts) ─────────────────────────── -->
+    <div class="screen cream" data-screen="you">
+      <div class="statusbar"><span>9:41</span><span style="color:var(--ink-soft);">Your profile</span><span>●&nbsp;●&nbsp;●</span></div>
+      <div class="scr-head"><div class="scr-kicker">Your profile</div><div class="scr-title">Parrot Neil</div></div>
+      <div class="you-body">
+        <div class="you-top">
+          <div class="you-big-av">PN</div>
+          <div>
+            <div class="you-nm">Parrot Neil</div>
+            <div>
+              <span class="you-tier">Intermediate</span>
+              <span class="you-tier founding">★ Founding</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat"><b>34</b><span>Check-ins</span></div>
+          <div class="stat"><b>9</b><span>Courts</span></div>
+          <div class="stat"><b>12</b><span>Friends</span></div>
+        </div>
+
+        <div class="badge-h">Badges</div>
+        <div class="badges">
+          <div class="bdg"><span class="ic">🏆</span>5 Courts<br/>in a Month</div>
+          <div class="bdg"><span class="ic">🔥</span>10-Day<br/>Streak</div>
+          <div class="bdg locked"><span class="ic">🔒</span>Court<br/>Captain</div>
+        </div>
+
+        <div class="alert-courts">
+          <div class="head">
+            <div class="ic">🚩</div>
+            <div class="tx"><b>"Players needed" alerts</b><span>Only ping me for courts I choose</span></div>
+          </div>
+          <div class="selected-courts">
+            <div class="selected-court"><div>Veterans Memorial Park<div class="court-mini">Alerts on · need 1+ players</div></div><button class="court-action remove">Remove</button></div>
+            <div class="selected-court"><div>Anderson Snow Park<div class="court-mini">Alerts on · evening games</div></div><button class="court-action remove">Remove</button></div>
+          </div>
+          <div class="court-search">Search courts to add...</div>
+          <div class="court-picks">
+            <div class="court-pick"><div>Delta Woods Park<div class="court-mini">2.4 mi · 4 courts</div></div><button class="court-action">Add</button></div>
+          </div>
+        </div>
+
+        <div class="friends-section">
+          <div class="row-h">
+            <div class="badge-h">Friends</div>
+            <span class="more-link">+ Add friend</span>
+          </div>
+          <div class="friend-card">
+            <div class="av green">HC</div>
+            <div style="flex:1;">
+              <div class="nm">Hector C.</div>
+              <div class="lvl">Expert · at Veterans now</div>
+            </div>
+            <span class="pill aqua">live</span>
+          </div>
+          <div class="friend-card">
+            <div class="av coral">MJ</div>
+            <div style="flex:1;">
+              <div class="nm">Maria J.</div>
+              <div class="lvl">Intermediate</div>
+            </div>
+          </div>
+          <div class="friend-card">
+            <div class="av purple">DR</div>
+            <div style="flex:1;">
+              <div class="nm">Dink Rodriguez</div>
+              <div class="lvl">Intermediate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="tabnav">
+        <button onclick="go('map')"><span class="tab-emoji">🗺️</span>Map</button>
+        <button onclick="go('court')"><span class="tab-emoji">📍</span>Courts</button>
+        <button onclick="go('chat-list')"><span class="tab-emoji">💬</span>Chat</button>
+        <button class="active"><span class="tab-emoji">👤</span>You</button>
+      </nav>
+    </div>
+
+  </div><!-- /phone -->
+
+  <button class="nav" id="next" aria-label="Next screen">›</button>
+</div>
+
+<div class="breadcrumb" id="breadcrumb"></div>
+
+<script>
+  const SEQUENCE = [
+    ['intro', 'Intro'],
+    ['map-anon', 'Map (anon)'],
+    ['sign-up', 'Sign-up · email'],
+    ['sign-up-dob', 'Sign-up · DOB'],
+    ['sign-up-profile', 'Sign-up · profile'],
+    ['sign-in', 'Sign-in'],
+    ['map', 'Map'],
+    ['court', 'Court detail'],
+    ['chat-list', 'Chat list'],
+    ['chat-thread', 'Chat thread'],
+    ['you', 'You'],
+  ];
+
+  function currentIndex() {
+    const active = document.querySelector('.screen.active');
+    if (!active) return 0;
+    return SEQUENCE.findIndex(s => s[0] === active.dataset.screen);
+  }
+
+  function go(key) {
+    document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+    const target = document.querySelector(`.screen[data-screen="${key}"]`);
+    if (target) target.classList.add('active');
+    renderBreadcrumb();
+    updateArrows();
+    history.replaceState(null, '', '#' + key);
+  }
+
+  function renderBreadcrumb() {
+    const bc = document.getElementById('breadcrumb');
+    const current = document.querySelector('.screen.active')?.dataset.screen;
+    bc.innerHTML = SEQUENCE.map(([key, label]) =>
+      `<button class="${key === current ? 'current' : ''}" onclick="go('${key}')">${label}</button>`
+    ).join('');
+  }
+
+  function updateArrows() {
+    const idx = currentIndex();
+    document.getElementById('prev').disabled = idx <= 0;
+    document.getElementById('next').disabled = idx >= SEQUENCE.length - 1;
+  }
+
+  document.getElementById('prev').onclick = () => {
+    const idx = currentIndex();
+    if (idx > 0) go(SEQUENCE[idx - 1][0]);
+  };
+  document.getElementById('next').onclick = () => {
+    const idx = currentIndex();
+    if (idx < SEQUENCE.length - 1) go(SEQUENCE[idx + 1][0]);
+  };
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') document.getElementById('prev').click();
+    if (e.key === 'ArrowRight') document.getElementById('next').click();
+  });
+
+  // Court page interactives
+  function toggleCheck() {
+    const b = document.getElementById('checkBtn');
+    if (b.classList.toggle('checked')) b.textContent = '✓ Checked in · tap to leave';
+    else b.textContent = 'Check in here';
+  }
+  let going = true, count = 3;
+  function toggleGoing() {
+    const b = document.getElementById('goBtn');
+    going = !going;
+    if (going) {
+      b.classList.remove('off');
+      document.getElementById('goIcon').textContent = '✓';
+      count++;
+    } else {
+      b.classList.add('off');
+      document.getElementById('goIcon').textContent = '+';
+      count--;
+    }
+    document.getElementById('goCount').textContent = count;
+  }
+
+  const hash = location.hash.replace(/^#/, '');
+  if (hash && document.querySelector(`.screen[data-screen="${hash}"]`)) go(hash);
+  else { renderBreadcrumb(); updateArrows(); }
+</script>
+</body>
+</html>

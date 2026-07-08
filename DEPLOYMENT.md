@@ -3,6 +3,7 @@
 ## Current Live URL
 
 - GitHub Pages: https://parrotkey.github.io/kitchen-guru-site/
+- Clickable app demo: https://parrotkey.github.io/kitchen-guru-site/demo/
 - Repository: https://github.com/ParrotKey/kitchen-guru-site
 
 ## Deployment Record
@@ -25,6 +26,7 @@ Public URL checks:
 - `/deletion.html` returned `200`.
 - `/assets/logo.svg` returned `200`.
 - `/assets/three.module.js` returned `200`.
+- `/demo/` returned `200`.
 
 Browser smoke:
 
