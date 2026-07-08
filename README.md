@@ -8,6 +8,7 @@ privacy, terms, community, and account-deletion pages.
 ## Hosting
 
 - Current path: GitHub Pages under `ParrotKey/kitchen-guru-site`.
+- Live URL: https://parrotkey.github.io/kitchen-guru-site/
 - Vercel is intentionally not connected from this session because the available
   Vercel account/team scope is `ibg`, and Kitchen Guru must not be deployed
   under Iconic Brand Group infrastructure.
