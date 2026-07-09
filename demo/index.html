@@ -136,7 +136,7 @@
   .tabnav button{
     background:none;border:none;cursor:pointer;
     display:flex;flex-direction:column;align-items:center;gap:3px;
-    font-family:var(--font-body);font-size:9.5px;font-weight:700;
+    font-family:var(--font-body);font-size:11px;font-weight:700;
     color:var(--ink-soft);padding:5px 0;transition:color .2s;
   }
   .tabnav button.active{color:var(--accent);}
@@ -159,10 +159,6 @@
     box-shadow:0 12px 24px -8px var(--brand);}
   .btn.pop{background:var(--pop);color:#fff;
     box-shadow:0 12px 24px -8px var(--pop);}
-  .btn.ghost-pink{
-    background:rgba(255,77,141,.08);
-    border:2px solid var(--pop);color:var(--pop);
-  }
   .btn.ghost-brand{
     background:rgba(157,13,234,.06);
     border:1.5px solid rgba(157,13,234,.3);color:var(--brand);
@@ -178,7 +174,7 @@
   /* field */
   .field{display:flex;flex-direction:column;gap:6px;}
   .field-label{
-    font-size:10.5px;font-weight:800;letter-spacing:.12em;
+    font-size:12px;font-weight:800;letter-spacing:.12em;
     text-transform:uppercase;color:var(--ink-soft);
   }
   .field-input{
@@ -239,7 +235,7 @@
     border-color:var(--brand);background:rgba(157,13,234,.06);
   }
   .skill-chip b{font-size:13px;color:var(--ink);display:block;font-weight:700;}
-  .skill-chip span{font-size:11px;color:var(--ink-soft);}
+  .skill-chip span{font-size:12px;color:var(--ink-soft);}
 
   /* ─────────────────────────────────────────────────────────────────────
      MAP
@@ -376,7 +372,7 @@
   }
   .court-photo .live{
     position:absolute;top:10px;left:10px;background:rgba(255,255,255,.95);
-    color:var(--accent);font-weight:800;font-size:11px;padding:5px 10px;
+    color:var(--accent);font-weight:800;font-size:12px;padding:5px 10px;
     border-radius:999px;display:flex;align-items:center;gap:6px;
   }
   .court-photo .live i{
@@ -391,7 +387,7 @@
   .t4{background:rgba(42,24,64,.7);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
 
   .sec-h{
-    font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
     color:var(--ink-soft);margin:6px 0 9px;
   }
   .bands{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
@@ -407,13 +403,13 @@
     box-shadow:0 6px 16px -12px var(--shadow);
   }
   .info-grid .cell .k{
-    font-size:10px;color:var(--ink-soft);font-weight:600;
+    font-size:12px;color:var(--ink-soft);font-weight:600;
     text-transform:uppercase;letter-spacing:.05em;
   }
   .info-grid .cell .v{font-size:13.5px;font-weight:700;color:var(--ink);margin-top:2px;}
   .amen{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px;}
   .amen span{
-    font-size:11.5px;font-weight:600;color:var(--brand);
+    font-size:12px;font-weight:600;color:var(--brand);
     background:rgba(157,13,234,.12);padding:6px 10px;border-radius:10px;
   }
 
@@ -430,7 +426,7 @@
     display:flex;align-items:center;justify-content:center;
   }
   .post .nm{font-weight:700;font-size:13px;color:var(--ink);}
-  .post .tg{font-size:11px;color:var(--fresh-deep);font-weight:600;}
+  .post .tg{font-size:12px;color:var(--fresh-deep);font-weight:600;}
   .post .txt{font-size:13.5px;line-height:1.45;color:var(--ink);}
   .needflag{
     margin-top:10px;display:inline-flex;align-items:center;gap:7px;
@@ -441,7 +437,7 @@
   .ticker{display:flex;align-items:center;gap:10px;margin-top:12px;}
   .going-btn{
     border:none;cursor:pointer;font-family:var(--font-body);font-weight:700;
-    font-size:13px;padding:9px 15px;border-radius:12px;
+    font-size:14px;padding:10px 16px;min-height:44px;border-radius:12px;
     background:var(--brand);color:#fff;transition:transform .15s,background .2s;
     display:flex;align-items:center;gap:7px;
   }
@@ -449,12 +445,12 @@
   .count{font-size:13px;font-weight:700;color:var(--ink);}
   .count small{font-weight:500;color:var(--ink-soft);}
   .friend-note{
-    margin-top:9px;font-size:11.5px;color:var(--ink-soft);
+    margin-top:9px;font-size:12px;color:var(--ink-soft);
     display:flex;align-items:center;gap:6px;
   }
   .friend-note b{color:var(--brand);}
   .disclaimer{
-    font-size:10px;color:var(--ink-soft);opacity:.85;
+    font-size:12px;color:var(--ink-soft);opacity:.85;
     text-align:left;padding:2px 2px 4px;line-height:1.4;
   }
 
@@ -469,11 +465,11 @@
   .verify-card .vbtns{display:flex;gap:8px;}
   .verify-card .vbtns button{
     flex:1;border:none;cursor:pointer;font-family:var(--font-body);font-weight:700;
-    font-size:13px;padding:9px;border-radius:11px;
+    font-size:14px;padding:10px;border-radius:11px;min-height:44px;
   }
   .verify-card .yes{background:var(--fresh-deep);color:#fff;}
   .verify-card .no{background:rgba(42,24,64,.08);color:var(--ink-soft);}
-  .verify-card .vprog{font-size:10.5px;color:var(--ink-soft);margin-top:8px;}
+  .verify-card .vprog{font-size:12px;color:var(--ink-soft);margin-top:8px;}
 
   .addphoto{display:flex;gap:8px;margin:0 0 14px;}
   .addphoto .slot{
@@ -498,6 +494,30 @@
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 8px 18px -6px var(--accent);
   }
+  .you-photo-wrap{position:relative;width:58px;height:58px;border:0;background:transparent;padding:0;}
+  .you-photo-plus{
+    position:absolute;right:-2px;bottom:-2px;
+    width:22px;height:22px;border-radius:50%;
+    border:2px solid var(--cream);background:var(--brand);
+    color:#fff;font-size:16px;line-height:18px;font-weight:900;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 16px -10px var(--shadow);
+  }
+  .you-photo-wrap:focus-visible .you-photo-plus{outline:2px solid var(--accent);outline-offset:2px;}
+  .photo-sheet{
+    display:none;position:absolute;inset:auto 18px 78px;
+    background:#fff;border:1px solid rgba(42,24,64,.12);
+    border-radius:18px;padding:14px;box-shadow:0 18px 44px -20px var(--shadow);
+    z-index:8;
+  }
+  .photo-sheet.show{display:block;}
+  .photo-sheet b{display:block;color:var(--brand-deep);font-family:var(--font-display);font-size:16px;}
+  .photo-sheet p{margin:3px 0 10px;color:var(--ink-soft);font-size:12px;font-weight:700;}
+  .photo-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .photo-actions button{
+    min-height:44px;border-radius:999px;border:1px solid rgba(157,13,234,.18);
+    background:rgba(157,13,234,.06);color:var(--brand);font-weight:900;
+  }
   .you-nm{font-family:var(--font-display);font-weight:700;font-size:19px;color:var(--brand-deep);}
   .you-tier{
     display:inline-block;margin-top:3px;font-size:11px;font-weight:700;
@@ -520,7 +540,7 @@
     box-shadow:0 8px 20px -14px var(--shadow);
   }
   .stat b{display:block;font-family:var(--font-display);font-size:21px;color:var(--accent);}
-  .stat span{font-size:10.5px;color:var(--ink-soft);font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+  .stat span{font-size:12px;color:var(--ink-soft);font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
 
   .badge-h{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:9px;}
   .badges{display:flex;gap:10px;margin-bottom:16px;}
@@ -528,7 +548,7 @@
     flex:1;aspect-ratio:1;border-radius:16px;
     background:rgba(38,234,211,.16);
     display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:5px;font-size:9px;font-weight:700;color:var(--brand);
+    gap:5px;font-size:12px;font-weight:700;color:var(--brand);
     text-align:center;padding:6px;
   }
   .bdg.locked{opacity:.5;background:rgba(42,24,64,.06);color:var(--ink-soft);}
@@ -564,24 +584,24 @@
     color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;flex:none;
   }
   .alert-courts .tx{flex:1;}
-  .alert-courts .tx b{font-size:12.5px;color:var(--ink);display:block;}
-  .alert-courts .tx span{font-size:10.5px;color:var(--ink-soft);}
+  .alert-courts .tx b{font-size:14px;color:var(--ink);display:block;}
+  .alert-courts .tx span{font-size:12px;color:var(--ink-soft);}
   .court-search{
     border:1px solid rgba(42,24,64,.1);border-radius:12px;
     background:rgba(157,13,234,.05);padding:9px 10px;
-    color:var(--ink-soft);font-size:11px;font-weight:600;
+    color:var(--ink-soft);font-size:12px;font-weight:600;
   }
   .selected-courts,.court-picks{display:grid;gap:7px;}
   .selected-court,.court-pick{
     display:flex;align-items:center;justify-content:space-between;gap:8px;
-    border-radius:12px;padding:9px 10px;font-size:11px;font-weight:700;
+    border-radius:12px;padding:10px;font-size:13px;font-weight:700;
   }
   .selected-court{background:rgba(38,234,211,.14);color:var(--fresh-deep);}
   .court-pick{background:#fff;border:1px dashed rgba(157,13,234,.24);color:var(--brand);}
-  .court-mini{font-size:9.5px;color:var(--ink-soft);font-weight:600;margin-top:2px;}
+  .court-mini{font-size:12px;color:var(--ink-soft);font-weight:600;margin-top:2px;}
   .court-action{
     border:0;border-radius:999px;background:var(--brand);color:#fff;
-    padding:5px 9px;font-size:10px;font-weight:800;cursor:pointer;
+    padding:10px 12px;min-width:64px;min-height:44px;font-size:12px;font-weight:800;cursor:pointer;
   }
   .court-action.remove{background:rgba(42,24,64,.08);color:var(--ink-soft);}
 
@@ -843,7 +863,7 @@
         <p class="auth-sub">Friends see this name. Strangers see only counts.</p>
         <div class="field">
           <span class="field-label">Player name</span>
-          <div class="field-input">kitchen.killer</div>
+          <div class="field-input">court.regular</div>
         </div>
         <div class="field">
           <span class="field-label">Skill</span>
@@ -964,6 +984,13 @@
           <div class="t">Need 2 for doubles<span>Posted 4 min ago · tap to join the game</span></div>
         </div>
 
+        <div class="sec-h">Right now</div>
+        <div class="post">
+          <div class="who"><div class="av">PN</div><div><div class="nm">Parrot Neil</div><div class="tg">6 min ago</div></div></div>
+          <div class="txt">"About 8 here. Good games going."</div>
+          <div class="ticker"><button class="going-btn off">Share an update</button></div>
+        </div>
+
         <div class="sec-h">Who's here · anonymous</div>
         <div class="bands">
           <div class="band"><span class="lab">Social</span>
@@ -1027,7 +1054,7 @@
 
         <button class="btn primary btn-block" id="checkBtn" onclick="toggleCheck()">Check in here</button>
         <div class="btn-row" style="margin-top:9px;">
-          <button class="btn ghost-pink">🚩 Post "need players"</button>
+          <button class="btn secondary">Need players</button>
         </div>
         <div class="suggest-row">
           <button class="btn ghost-brand">✏️ Suggest an edit</button>
@@ -1117,13 +1144,24 @@
       <div class="scr-head"><div class="scr-kicker">Your profile</div><div class="scr-title">Parrot Neil</div></div>
       <div class="you-body">
         <div class="you-top">
-          <div class="you-big-av">PN</div>
+          <button class="you-photo-wrap" onclick="showPhotoSheet()" aria-label="Add profile photo">
+            <div class="you-big-av">PN</div>
+            <div class="you-photo-plus">+</div>
+          </button>
           <div>
             <div class="you-nm">Parrot Neil</div>
             <div>
               <span class="you-tier">Intermediate</span>
               <span class="you-tier founding">★ Founding</span>
             </div>
+          </div>
+        </div>
+        <div class="photo-sheet" id="photoSheet">
+          <b>Profile photo</b>
+          <p>Take a new photo or choose one from your library.</p>
+          <div class="photo-actions">
+            <button onclick="hidePhotoSheet()">Take photo</button>
+            <button onclick="hidePhotoSheet()">Choose library</button>
           </div>
         </div>
 
@@ -1143,11 +1181,11 @@
         <div class="alert-courts">
           <div class="head">
             <div class="ic">🚩</div>
-            <div class="tx"><b>"Players needed" alerts</b><span>Only ping me for courts I choose</span></div>
+            <div class="tx"><b>My court alerts</b><span>Get notified when a saved court needs players or has news.</span></div>
           </div>
           <div class="selected-courts">
-            <div class="selected-court"><div>Veterans Memorial Park<div class="court-mini">Alerts on · need 1+ players</div></div><button class="court-action remove">Remove</button></div>
-            <div class="selected-court"><div>Anderson Snow Park<div class="court-mini">Alerts on · evening games</div></div><button class="court-action remove">Remove</button></div>
+            <div class="selected-court"><div>Veterans Memorial Park<div class="court-mini">Needs players or has news</div></div><button class="court-action remove">Remove</button></div>
+            <div class="selected-court"><div>Anderson Snow Park<div class="court-mini">Needs players or has news</div></div><button class="court-action remove">Remove</button></div>
           </div>
           <div class="court-search">Search courts to add...</div>
           <div class="court-picks">
@@ -1277,6 +1315,12 @@
       count--;
     }
     document.getElementById('goCount').textContent = count;
+  }
+  function showPhotoSheet() {
+    document.getElementById('photoSheet')?.classList.add('show');
+  }
+  function hidePhotoSheet() {
+    document.getElementById('photoSheet')?.classList.remove('show');
   }
 
   const hash = location.hash.replace(/^#/, '');
