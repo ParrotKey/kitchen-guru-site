@@ -1,0 +1,27 @@
+"use strict";
+
+self.addEventListener("install", () => {
+  self.skipWaiting();
+});
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    Promise.all([
+      self.registration.unregister(),
+      caches.keys().then((keys) =>
+        Promise.all(keys.map((key) => caches.delete(key))),
+      ),
+    ])
+      .then(() =>
+        self.clients.matchAll({
+          includeUncontrolled: true,
+          type: "window",
+        }),
+      )
+      .then((clients) => {
+        for (const client of clients) {
+          client.navigate(client.url);
+        }
+      }),
+  );
+});
