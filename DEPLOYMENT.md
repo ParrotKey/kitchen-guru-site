@@ -2,8 +2,8 @@
 
 ## Current Live URL
 
-- GitHub Pages: https://parrotkey.github.io/kitchen-guru-site/
-- Clickable app demo: https://parrotkey.github.io/kitchen-guru-site/demo/
+- GitHub Pages: https://kitchenguruapp.com/
+- Clickable app demo: https://kitchenguruapp.com/demo/
 - Repository: https://github.com/ParrotKey/kitchen-guru-site
 
 ## Deployment Record
@@ -46,7 +46,7 @@ Browser smoke:
 
 Mobile demo smoke:
 
-- URL: `https://parrotkey.github.io/kitchen-guru-site/demo/`.
+- URL: `https://kitchenguruapp.com/demo/`.
 - Viewport: 390 x 844.
 - Rendered client width: 375.
 - Phone mockup fit inside viewport: `332 x 690`, left `21.5`, right `353.5`.

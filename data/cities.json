@@ -1,0 +1,554 @@
+{
+  "baseUrl": "https://kitchenguruapp.com",
+  "waveOne": [
+    {
+      "slug": "tampa",
+      "name": "Tampa",
+      "state": "Florida",
+      "stateAbbr": "FL",
+      "metro": "Tampa Bay",
+      "cluster": "Florida",
+      "season": "year-round outdoor play",
+      "painPoint": "players often decide between a few parks across a wide metro, so a bad court guess can waste a full evening",
+      "context": [
+        "Tampa pickleball has the shape of a year-round habit: after-work games, weekend open play, and players moving between public courts across the bay.",
+        "Kitchen Guru is built for that moment when you want to play but do not want to drive across town just to find an empty court.",
+        "Saved-court alerts make more sense here than a broad radius because Tampa players usually know the parks they actually like."
+      ],
+      "localEvidence": [
+        {
+          "note": "City of Tampa Parks and Recreation publishes a dedicated pickleball page and lists Al Barnes Park as an outdoor pickleball location.",
+          "sourceLabel": "City of Tampa pickleball",
+          "sourceUrl": "https://www.tampa.gov/parks-and-recreation/activities-recreation/athletics/pickleball"
+        },
+        {
+          "note": "Hillsborough County lists Town 'N Country Park as a park location with pickleball and tennis courts.",
+          "sourceLabel": "Hillsborough County Town 'N Country Park",
+          "sourceUrl": "https://www.hillsboroughcounty.org/locations/town-n-country-park"
+        },
+        {
+          "note": "Hillsborough County lists Northlakes Sports Complex with published pickleball court hours.",
+          "sourceLabel": "Hillsborough County Northlakes Sports Complex",
+          "sourceUrl": "https://www.hillsboroughcounty.org/en/locations/northlakes-park"
+        }
+      ],
+      "nearby": ["st-petersburg", "orlando", "miami", "fort-lauderdale"]
+    },
+    {
+      "slug": "st-petersburg",
+      "name": "St. Petersburg",
+      "state": "Florida",
+      "stateAbbr": "FL",
+      "metro": "Tampa Bay",
+      "cluster": "Florida",
+      "season": "year-round outdoor play",
+      "painPoint": "bridge traffic and park choice make quick local signals more useful than broad nearby alerts",
+      "context": [
+        "St. Petersburg players need fast answers: which side of town has games, who needs a fourth, and whether a familiar court is worth the drive.",
+        "Kitchen Guru keeps the signal local by focusing alerts on courts a player saves instead of blasting every park nearby.",
+        "The app is designed for public-court pickup play, where a simple court update can help a doubles game start faster."
+      ],
+      "nearby": ["tampa", "orlando", "fort-lauderdale", "miami"]
+    },
+    {
+      "slug": "orlando",
+      "name": "Orlando",
+      "state": "Florida",
+      "stateAbbr": "FL",
+      "metro": "Central Florida",
+      "cluster": "Florida",
+      "season": "year-round outdoor play",
+      "painPoint": "players can be spread across suburbs, resorts, and public parks, making court choice a real coordination problem",
+      "context": [
+        "Orlando pickleball mixes locals, visitors, and players moving between different parts of Central Florida.",
+        "Kitchen Guru is meant to make pickup games less random by showing court-level activity without exposing strangers by name.",
+        "For Orlando players, a saved-court list is the practical center of the app: follow the places you actually play and ignore the noise."
+      ],
+      "nearby": ["tampa", "jacksonville", "miami", "st-petersburg"]
+    },
+    {
+      "slug": "miami",
+      "name": "Miami",
+      "state": "Florida",
+      "stateAbbr": "FL",
+      "metro": "South Florida",
+      "cluster": "Florida",
+      "season": "year-round outdoor play",
+      "painPoint": "dense neighborhoods and traffic make it hard to know whether a court is worth the trip",
+      "context": [
+        "Miami players often need a tighter signal than a generic map pin: is there a game forming, and is it at a court they actually use?",
+        "Kitchen Guru frames court activity at the park level, so non-friends see useful activity without personal exposure.",
+        "The product is a fit for Miami because timing and location matter as much as skill level when pickup games come together."
+      ],
+      "localEvidence": [
+        {
+          "note": "Miami Parks and Recreation has publicly discussed pickleball planning through its Pickleball Master Plan Workshop.",
+          "sourceLabel": "City of Miami Parks and Recreation",
+          "sourceUrl": "https://www.miamigov.com/My-Government/Departments/Parks-and-Recreation"
+        }
+      ],
+      "nearby": ["fort-lauderdale", "tampa", "orlando", "jacksonville"]
+    },
+    {
+      "slug": "fort-lauderdale",
+      "name": "Fort Lauderdale",
+      "state": "Florida",
+      "stateAbbr": "FL",
+      "metro": "South Florida",
+      "cluster": "Florida",
+      "season": "year-round outdoor play",
+      "painPoint": "South Florida players need to coordinate across nearby cities without turning every alert into noise",
+      "context": [
+        "Fort Lauderdale sits in a pickleball corridor where nearby-city play is realistic but still needs better coordination.",
+        "Kitchen Guru gives players a way to save the courts that matter and get notified when those specific places need people.",
+        "The page is built for beta interest, not a claim that Kitchen Guru is already running every local court."
+      ],
+      "nearby": ["miami", "tampa", "st-petersburg", "orlando"]
+    },
+    {
+      "slug": "jacksonville",
+      "name": "Jacksonville",
+      "state": "Florida",
+      "stateAbbr": "FL",
+      "metro": "Northeast Florida",
+      "cluster": "Florida",
+      "season": "year-round outdoor play",
+      "painPoint": "the metro is large enough that choosing the wrong side of town can cost the whole play window",
+      "context": [
+        "Jacksonville pickleball is a spread-out coordination problem: players need to know where games are forming before they commit the drive.",
+        "Kitchen Guru is built around court-level signals instead of broad social feeds, which keeps the experience simpler for pickup players.",
+        "Saved-court alerts let a Jacksonville player follow the parks they actually use while keeping the broader map anonymous."
+      ],
+      "nearby": ["orlando", "tampa", "miami", "atlanta"]
+    },
+    {
+      "slug": "austin",
+      "name": "Austin",
+      "state": "Texas",
+      "stateAbbr": "TX",
+      "metro": "Central Texas",
+      "cluster": "Texas",
+      "season": "long outdoor season",
+      "painPoint": "players often balance work schedules, heat, traffic, and a fast-growing court scene",
+      "context": [
+        "Austin pickleball has the energy of a growing city: plenty of people want to play, but timing and court choice can still be messy.",
+        "Kitchen Guru is designed for the practical question: where can I find a game soon with players I may want to meet again?",
+        "The app keeps the first signal anonymous, then lets mutual friends coordinate after the game."
+      ],
+      "localEvidence": [
+        {
+          "note": "Austin Parks and Recreation publishes a pickleball page listing public play locations including Mary Frances Baylor Clarksville Pocket Park, Mary Moore Searight Metro Park, Mountain View Neighborhood Park, Shipe Neighborhood Park, South Austin Neighborhood Park, and Springwoods Neighborhood Park.",
+          "sourceLabel": "Austin Parks and Recreation pickleball",
+          "sourceUrl": "https://www.austintexas.gov/parks/programs/pickleball"
+        }
+      ],
+      "nearby": ["san-antonio", "dallas", "houston", "frisco"]
+    },
+    {
+      "slug": "dallas",
+      "name": "Dallas",
+      "state": "Texas",
+      "stateAbbr": "TX",
+      "metro": "North Texas",
+      "cluster": "Texas",
+      "season": "long outdoor season",
+      "painPoint": "North Texas has enough distance between courts that a live court signal matters",
+      "context": [
+        "Dallas pickleball players need a simple way to see which saved courts are active without sorting through unrelated posts.",
+        "Kitchen Guru turns the local pickup-game problem into a court-first flow: check the signal, show up, then connect after mutual approval.",
+        "For Dallas, the first promise is less wasted driving and more reliable doubles starts."
+      ],
+      "nearby": ["plano", "frisco", "austin", "houston"]
+    },
+    {
+      "slug": "houston",
+      "name": "Houston",
+      "state": "Texas",
+      "stateAbbr": "TX",
+      "metro": "Greater Houston",
+      "cluster": "Texas",
+      "season": "long outdoor season",
+      "painPoint": "distance and traffic make court-level updates more valuable than general nearby chatter",
+      "context": [
+        "Houston is a city where the wrong court guess can mean a long drive for nothing.",
+        "Kitchen Guru keeps alerts tied to courts a player chooses, making the app more useful than a generic radius notification.",
+        "The beta is built for public-court players who want a simple signal: who needs players, where, and how recently."
+      ],
+      "nearby": ["austin", "san-antonio", "dallas", "plano"]
+    },
+    {
+      "slug": "san-antonio",
+      "name": "San Antonio",
+      "state": "Texas",
+      "stateAbbr": "TX",
+      "metro": "South Central Texas",
+      "cluster": "Texas",
+      "season": "long outdoor season",
+      "painPoint": "players need better timing signals for public-court play without joining another group chat",
+      "context": [
+        "San Antonio pickleball is a good fit for court-first coordination: players know their preferred parks but still need timing help.",
+        "Kitchen Guru lets the court become the organizing point instead of forcing every pickup game into a text thread.",
+        "The app's privacy model matters: strangers can see court activity, while names and messages stay behind mutual friendship."
+      ],
+      "nearby": ["austin", "houston", "dallas", "frisco"]
+    },
+    {
+      "slug": "frisco",
+      "name": "Frisco",
+      "state": "Texas",
+      "stateAbbr": "TX",
+      "metro": "North Texas",
+      "cluster": "Texas",
+      "season": "long outdoor season",
+      "painPoint": "fast-growing suburbs can have active players but scattered court timing",
+      "context": [
+        "Frisco's pickleball use case is about finding the right group at the right time without turning the app into a noisy social network.",
+        "Kitchen Guru keeps the experience practical: save the courts you play, watch for simple updates, and connect after a real game.",
+        "That makes the product better suited to local routines than one-off citywide blasts."
+      ],
+      "nearby": ["plano", "dallas", "austin", "houston"]
+    },
+    {
+      "slug": "plano",
+      "name": "Plano",
+      "state": "Texas",
+      "stateAbbr": "TX",
+      "metro": "North Texas",
+      "cluster": "Texas",
+      "season": "long outdoor season",
+      "painPoint": "players often want a nearby game, but only at the courts they actually trust",
+      "context": [
+        "Plano pickleball players may not need more social noise; they need a cleaner way to know when a preferred court has life.",
+        "Kitchen Guru's saved-court model is built for that habit: follow specific parks, not every possible court in a radius.",
+        "The beta pages explain the city opportunity while keeping launch claims honest and court-level."
+      ],
+      "nearby": ["frisco", "dallas", "austin", "houston"]
+    },
+    {
+      "slug": "phoenix",
+      "name": "Phoenix",
+      "state": "Arizona",
+      "stateAbbr": "AZ",
+      "metro": "Valley of the Sun",
+      "cluster": "West",
+      "season": "strong outdoor season with heat-aware timing",
+      "painPoint": "players often plan around heat, daylight, and distance across a wide metro",
+      "context": [
+        "Phoenix pickleball is local and timing-sensitive: morning and evening windows matter, and the valley is spread out.",
+        "Kitchen Guru is designed to answer whether a saved court is worth heading to now, not someday.",
+        "The app's court pulse idea fits Phoenix because a simple recent update can save a long, hot drive."
+      ],
+      "localEvidence": [
+        {
+          "note": "City of Phoenix Parks and Recreation maintains tennis and pickleball resources and publishes pickleball program flyers with named outdoor and community-center locations.",
+          "sourceLabel": "City of Phoenix tennis and pickleball",
+          "sourceUrl": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/sports-complexes/tennis-pickleball.html"
+        },
+        {
+          "note": "Phoenix pickleball materials reference public play locations such as Deem Hills Park, Deer Valley Park, Encanto Sports Complex, and G.R. Herberger Park.",
+          "sourceLabel": "City of Phoenix pickleball flyer",
+          "sourceUrl": "https://www.phoenix.gov/content/dam/phoenix/parkssite/documents/2025%20Winter%20Spring%20Pickleball_.pdf"
+        }
+      ],
+      "nearby": ["denver", "san-diego", "los-angeles", "irvine"]
+    },
+    {
+      "slug": "denver",
+      "name": "Denver",
+      "state": "Colorado",
+      "stateAbbr": "CO",
+      "metro": "Front Range",
+      "cluster": "West",
+      "season": "outdoor season plus indoor winter play",
+      "painPoint": "weather and timing can change the pickup-game plan quickly",
+      "context": [
+        "Denver pickleball players often need to coordinate around weather, daylight, and whether a court actually has a group forming.",
+        "Kitchen Guru helps by making court activity visible without making every player personally visible to strangers.",
+        "For a city with seasonal shifts, saved-court alerts can help players keep a familiar rotation."
+      ],
+      "nearby": ["phoenix", "seattle", "chicago", "san-diego"]
+    },
+    {
+      "slug": "atlanta",
+      "name": "Atlanta",
+      "state": "Georgia",
+      "stateAbbr": "GA",
+      "metro": "Metro Atlanta",
+      "cluster": "Southeast",
+      "season": "long outdoor season",
+      "painPoint": "traffic and spread-out suburbs make reliable local signals valuable",
+      "context": [
+        "Atlanta pickleball players need coordination that respects the shape of the metro: a quick game nearby can be easy, but a bad court guess costs time.",
+        "Kitchen Guru focuses on saved courts and public-court activity instead of asking players to watch a general feed.",
+        "The app is meant to help local games form faster while keeping identities private until friendship is mutual."
+      ],
+      "nearby": ["jacksonville", "tampa", "chicago", "phoenix"]
+    },
+    {
+      "slug": "san-diego",
+      "name": "San Diego",
+      "state": "California",
+      "stateAbbr": "CA",
+      "metro": "Southern California",
+      "cluster": "California",
+      "season": "year-round outdoor play",
+      "painPoint": "popular outdoor courts can be active, crowded, or quiet depending on the window",
+      "context": [
+        "San Diego pickleball has the weather for regular play, but players still need to know where games are forming.",
+        "Kitchen Guru gives the court itself a simple signal, then lets real player relationships form after mutual approval.",
+        "Saved-court alerts are a better fit than broad pings because players usually have a handful of courts they prefer."
+      ],
+      "nearby": ["irvine", "los-angeles", "long-beach", "phoenix"]
+    },
+    {
+      "slug": "sacramento",
+      "name": "Sacramento",
+      "state": "California",
+      "stateAbbr": "CA",
+      "metro": "Northern California",
+      "cluster": "California",
+      "season": "long outdoor season",
+      "painPoint": "players need a simple way to coordinate without guessing which park has games",
+      "context": [
+        "Sacramento pickleball players can benefit from a court-level view that separates useful activity from general chatter.",
+        "Kitchen Guru is designed for the decision before you leave: is a saved court active enough to head over?",
+        "The app stays beta-first and honest, inviting local players to help shape the city rollout."
+      ],
+      "nearby": ["san-francisco", "oakland", "san-jose", "irvine"]
+    },
+    {
+      "slug": "irvine",
+      "name": "Irvine",
+      "state": "California",
+      "stateAbbr": "CA",
+      "metro": "Orange County",
+      "cluster": "California",
+      "season": "year-round outdoor play",
+      "painPoint": "organized parks and busy schedules make timing more important than broad discovery",
+      "context": [
+        "Irvine pickleball is a good match for saved-court behavior: players know the places they like and want cleaner timing signals.",
+        "Kitchen Guru helps turn a preferred court list into useful alerts when a game needs players.",
+        "The experience is built for adults who meet at public courts and want simple, respectful follow-up."
+      ],
+      "nearby": ["long-beach", "los-angeles", "san-diego", "phoenix"]
+    },
+    {
+      "slug": "san-jose",
+      "name": "San Jose",
+      "state": "California",
+      "stateAbbr": "CA",
+      "metro": "Bay Area",
+      "cluster": "California",
+      "season": "long outdoor season",
+      "painPoint": "players need practical coordination across a busy, spread-out region",
+      "context": [
+        "San Jose pickleball players often need to decide quickly whether a nearby court is active enough for a good session.",
+        "Kitchen Guru keeps the first layer anonymous, making public-court activity useful without turning it into a people tracker.",
+        "For Bay Area players, the app's value is less guessing and better follow-up with players they actually meet."
+      ],
+      "nearby": ["san-francisco", "oakland", "sacramento", "los-angeles"]
+    },
+    {
+      "slug": "long-beach",
+      "name": "Long Beach",
+      "state": "California",
+      "stateAbbr": "CA",
+      "metro": "Southern California",
+      "cluster": "California",
+      "season": "year-round outdoor play",
+      "painPoint": "players may be near several courts, but only a few are worth alerting on",
+      "context": [
+        "Long Beach pickleball players need a court-first signal that does not require joining another broad local group.",
+        "Kitchen Guru is built around the idea that the best alerts come from the courts you already care about.",
+        "The city page invites beta players to help shape that local saved-court network."
+      ],
+      "nearby": ["los-angeles", "irvine", "san-diego", "phoenix"]
+    },
+    {
+      "slug": "oakland",
+      "name": "Oakland",
+      "state": "California",
+      "stateAbbr": "CA",
+      "metro": "Bay Area",
+      "cluster": "California",
+      "season": "long outdoor season",
+      "painPoint": "dense local play can still be hard to time without a court-level pulse",
+      "context": [
+        "Oakland pickleball players need a simple way to see court life without exposing names to everyone nearby.",
+        "Kitchen Guru's anonymous activity layer is designed for public courts where people want useful signals before social visibility.",
+        "Mutual friend visibility keeps the follow-up human after players actually meet."
+      ],
+      "nearby": ["san-francisco", "san-jose", "sacramento", "long-beach"]
+    },
+    {
+      "slug": "san-francisco",
+      "name": "San Francisco",
+      "state": "California",
+      "stateAbbr": "CA",
+      "metro": "Bay Area",
+      "cluster": "California",
+      "season": "long outdoor season",
+      "painPoint": "limited court windows and dense neighborhoods make timing and privacy important",
+      "context": [
+        "San Francisco pickleball can feel hyper-local: a court may be perfect at one hour and difficult at another.",
+        "Kitchen Guru helps players follow specific courts and see anonymous activity without revealing who is there.",
+        "The app is designed for practical pickup play, not a broad social feed."
+      ],
+      "nearby": ["oakland", "san-jose", "sacramento", "los-angeles"]
+    },
+    {
+      "slug": "los-angeles",
+      "name": "Los Angeles",
+      "state": "California",
+      "stateAbbr": "CA",
+      "metro": "Southern California",
+      "cluster": "California",
+      "season": "year-round outdoor play",
+      "painPoint": "distance and traffic make a bad court guess especially painful",
+      "context": [
+        "Los Angeles pickleball is a coordination problem as much as a sports problem: the right court matters because the drive matters.",
+        "Kitchen Guru lets players save the courts that fit their routine and watch for useful updates from those places.",
+        "That keeps alerts relevant without turning the whole city into noise."
+      ],
+      "nearby": ["long-beach", "irvine", "san-diego", "phoenix"]
+    },
+    {
+      "slug": "new-york",
+      "name": "New York",
+      "state": "New York",
+      "stateAbbr": "NY",
+      "metro": "New York City",
+      "cluster": "Northeast",
+      "season": "outdoor season plus indoor winter play",
+      "painPoint": "court space and timing can be tight, so players need better signals before they go",
+      "context": [
+        "New York pickleball players need fast court-level context because space, timing, and crowds all matter.",
+        "Kitchen Guru is built to show activity without exposing individual identities to strangers.",
+        "The city page is a beta invitation for players who want less guessing and cleaner follow-up after a match."
+      ],
+      "nearby": ["boston", "albany", "rochester", "buffalo"]
+    },
+    {
+      "slug": "boston",
+      "name": "Boston",
+      "state": "Massachusetts",
+      "stateAbbr": "MA",
+      "metro": "Greater Boston",
+      "cluster": "Northeast",
+      "season": "outdoor season plus indoor winter play",
+      "painPoint": "seasonal weather and busy courts make timing signals valuable",
+      "context": [
+        "Boston pickleball players often plan around weather, neighborhood access, and whether a court actually has a group forming.",
+        "Kitchen Guru gives saved courts a simple alert path without making strangers visible by name.",
+        "The product is designed for adult pickup play that stays useful and respectful."
+      ],
+      "nearby": ["new-york", "albany", "rochester", "chicago"]
+    },
+    {
+      "slug": "chicago",
+      "name": "Chicago",
+      "state": "Illinois",
+      "stateAbbr": "IL",
+      "metro": "Chicagoland",
+      "cluster": "Midwest",
+      "season": "outdoor season plus indoor winter play",
+      "painPoint": "weather windows and neighborhood distance make a reliable court pulse useful",
+      "context": [
+        "Chicago pickleball can shift with the season, the weather, and the court location.",
+        "Kitchen Guru focuses on saved-court updates so players can decide whether the timing is right before heading out.",
+        "The privacy model matters in a dense city: court activity is useful, individual identity stays behind mutual friendship."
+      ],
+      "nearby": ["denver", "atlanta", "new-york", "boston"]
+    },
+    {
+      "slug": "seattle",
+      "name": "Seattle",
+      "state": "Washington",
+      "stateAbbr": "WA",
+      "metro": "Puget Sound",
+      "cluster": "West",
+      "season": "weather-aware outdoor and indoor play",
+      "painPoint": "weather and timing can make a court update more useful than a static map",
+      "context": [
+        "Seattle pickleball players need more than a map pin when weather and schedules change quickly.",
+        "Kitchen Guru is designed to make court activity visible at the right level: helpful enough to plan, private enough for strangers.",
+        "Saved-court alerts can help Seattle players follow the places that fit their routine."
+      ],
+      "nearby": ["denver", "san-francisco", "phoenix", "chicago"]
+    },
+    {
+      "slug": "buffalo",
+      "name": "Buffalo",
+      "state": "New York",
+      "stateAbbr": "NY",
+      "metro": "Western New York",
+      "cluster": "Northeast",
+      "season": "indoor winter and outdoor summer play",
+      "painPoint": "seasonal shifts make it harder to know where games are actually forming",
+      "context": [
+        "Buffalo pickleball players need a seasonal mindset: some windows are outdoor, others move indoors, and timing matters.",
+        "Kitchen Guru's court-first model helps players follow familiar places and see when a game needs people.",
+        "The app avoids public identity exposure while still making court activity useful."
+      ],
+      "nearby": ["rochester", "syracuse", "albany", "new-york"]
+    },
+    {
+      "slug": "rochester",
+      "name": "Rochester",
+      "state": "New York",
+      "stateAbbr": "NY",
+      "metro": "Finger Lakes",
+      "cluster": "Northeast",
+      "season": "indoor winter and outdoor summer play",
+      "painPoint": "players need to keep track of active court windows as seasons change",
+      "context": [
+        "Rochester pickleball has the familiar Northeast rhythm: outdoor play when the weather cooperates and more planning when it does not.",
+        "Kitchen Guru helps by letting players follow specific courts and watch for simple activity updates.",
+        "The city page is beta-first and honest: it invites local players to shape the rollout."
+      ],
+      "nearby": ["buffalo", "syracuse", "albany", "new-york"]
+    },
+    {
+      "slug": "syracuse",
+      "name": "Syracuse",
+      "state": "New York",
+      "stateAbbr": "NY",
+      "metro": "Central New York",
+      "cluster": "Northeast",
+      "season": "indoor winter and outdoor summer play",
+      "painPoint": "weather windows and court availability make coordination important",
+      "context": [
+        "Syracuse pickleball players benefit from practical timing signals because the best play window can change with weather and season.",
+        "Kitchen Guru keeps the first layer court-level and anonymous, then lets mutual friends coordinate after real games.",
+        "The saved-court model keeps alerts focused on the places a player already cares about."
+      ],
+      "nearby": ["rochester", "buffalo", "albany", "new-york"]
+    },
+    {
+      "slug": "albany",
+      "name": "Albany",
+      "state": "New York",
+      "stateAbbr": "NY",
+      "metro": "Capital Region",
+      "cluster": "Northeast",
+      "season": "indoor winter and outdoor summer play",
+      "painPoint": "players need a practical way to know which familiar courts have activity",
+      "context": [
+        "Albany pickleball is a fit for a saved-court experience because local players often know their preferred parks and need better timing.",
+        "Kitchen Guru focuses on whether a court has life, not on broadcasting every player's identity.",
+        "The page invites Capital Region players into the beta without claiming a finished local network."
+      ],
+      "nearby": ["syracuse", "rochester", "new-york", "boston"]
+    }
+  ],
+  "waveTwo": [
+    { "slug": "sarasota", "name": "Sarasota", "state": "Florida", "stateAbbr": "FL" },
+    { "slug": "naples", "name": "Naples", "state": "Florida", "stateAbbr": "FL" },
+    { "slug": "the-villages", "name": "The Villages", "state": "Florida", "stateAbbr": "FL" },
+    { "slug": "scottsdale", "name": "Scottsdale", "state": "Arizona", "stateAbbr": "AZ" },
+    { "slug": "mesa", "name": "Mesa", "state": "Arizona", "stateAbbr": "AZ" },
+    { "slug": "boca-raton", "name": "Boca Raton", "state": "Florida", "stateAbbr": "FL" },
+    { "slug": "clearwater", "name": "Clearwater", "state": "Florida", "stateAbbr": "FL" },
+    { "slug": "fort-myers", "name": "Fort Myers", "state": "Florida", "stateAbbr": "FL" }
+  ]
+}
