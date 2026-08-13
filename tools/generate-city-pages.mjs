@@ -168,7 +168,7 @@ function header(prefix = "../") {
     <nav class="navlinks" aria-label="Primary navigation">
       <a href="${prefix}cities/">Cities</a>
       <a href="${prefix}support.html">Support</a>
-      <a class="button primary" href="mailto:info@parrotkey.us?subject=Kitchen%20Guru%20beta%20updates">Join beta</a>
+      <a class="button primary" href="mailto:kitchenguru2026@gmail.com?subject=Kitchen%20Guru%20beta%20updates">Join beta</a>
     </nav>
   </div>
 </header>`;
@@ -287,7 +287,7 @@ function cityPage(city) {
       <h1>Find your next pickleball game in ${esc(city.name)}.</h1>
       <p class="lede">Kitchen Guru helps ${esc(city.name)} players follow the courts they actually use, see anonymous court activity, and connect after real games.</p>
       <div class="hero-actions">
-        <a class="button primary" href="mailto:info@parrotkey.us?subject=Kitchen%20Guru%20${encodeURIComponent(city.name)}%20beta">Join the ${esc(city.name)} beta list</a>
+        <a class="button primary" href="mailto:kitchenguru2026@gmail.com?subject=Kitchen%20Guru%20${encodeURIComponent(city.name)}%20beta">Join the ${esc(city.name)} beta list</a>
         <a class="button ghost" href="../">See all cities</a>
       </div>
     </div>
@@ -415,7 +415,7 @@ function hubPage() {
       <div class="kicker">Kitchen Guru cities</div>
       <h1>Find pickleball players city by city.</h1>
       <p class="lede">Kitchen Guru is building local court-signal pages for major pickleball markets: saved-court alerts, anonymous court activity, and beta access for adult pickup players.</p>
-      <div class="hero-actions"><a class="button primary" href="mailto:info@parrotkey.us?subject=Kitchen%20Guru%20city%20beta">Join beta list</a><a class="button ghost" href="../">Back to Kitchen Guru</a></div>
+      <div class="hero-actions"><a class="button primary" href="mailto:kitchenguru2026@gmail.com?subject=Kitchen%20Guru%20city%20beta">Join beta list</a><a class="button ghost" href="../">Back to Kitchen Guru</a></div>
     </div>
   </section>
   ${clusters}
