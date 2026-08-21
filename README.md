@@ -22,5 +22,7 @@ privacy, terms, community, and account-deletion pages.
 - `support.html` - Support page.
 - `community.html` - Community Guidelines.
 - `deletion.html` - Account deletion instructions.
+- `invite.html` - mutual-consent friend-invite bridge from a clickable HTTPS link into
+  the installed Kitchen Guru app.
 - `demo/` - clickable app mockup for partner/product review.
 - `assets/` - logo, legal CSS, and local Three.js module.
