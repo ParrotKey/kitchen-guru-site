@@ -40,6 +40,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-height) + 12px);
     background: var(--ink);
   }
 
@@ -409,31 +410,15 @@
 
   .product-rows {
     display: grid;
-    gap: 28px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px;
   }
 
   .product-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(290px, 410px);
-    align-items: center;
-    gap: clamp(42px, 8vw, 110px);
-    min-height: 660px;
-    padding: 72px clamp(28px, 5vw, 72px);
-    overflow: hidden;
+    min-width: 0;
+    padding: 32px 0;
     border-top: 1px solid var(--line);
-    background: #f5f8ef;
   }
-
-  .product-row:nth-child(2) {
-    background: #fff4e8;
-  }
-
-  .product-row:nth-child(3) {
-    background: #eff7f5;
-  }
-
-  .product-row:nth-child(even) .product-copy { order: 2; }
-  .product-row:nth-child(even) .product-screen { order: 1; }
 
   .product-copy {
     max-width: 580px;
@@ -446,8 +431,9 @@
 
   .product-copy h3 {
     max-width: 560px;
-    font-size: clamp(3rem, 5.4vw, 5.2rem);
-    line-height: .93;
+    font-size: 2.4rem;
+    line-height: 1.05;
+    overflow-wrap: anywhere;
     font-weight: 950;
     letter-spacing: 0;
   }
@@ -456,7 +442,7 @@
     max-width: 520px;
     margin-top: 24px;
     color: var(--muted);
-    font-size: 1.14rem;
+    font-size: 1.05rem;
   }
 
   .customer-proof {
@@ -1693,7 +1679,7 @@
     .cities-copy h2,
     .release-copy h2 { font-size: 4rem; }
     .experience-grid { grid-template-columns: .9fr 1.1fr; gap: 34px; }
-    .product-row { grid-template-columns: minmax(0, 1fr) minmax(270px, 340px); }
+    .product-rows { gap: 24px; }
     .story-step h3 { font-size: 3rem; }
     .phone { width: min(300px, 62%); }
     .app-gallery-head h2 { font-size: 3.7rem; }
@@ -1742,16 +1728,11 @@
     .intro p { font-size: 1.05rem; }
     .experience-grid { grid-template-columns: 1fr; }
     .product-walkthrough { padding-bottom: 82px; }
-    .product-rows { gap: 16px; }
+    .product-rows { grid-template-columns: 1fr; gap: 16px; }
     .product-row {
-      grid-template-columns: 1fr;
-      gap: 38px;
-      min-height: 0;
-      padding: 58px 22px 64px;
+      padding: 28px 0;
     }
-    .product-row:nth-child(even) .product-copy,
-    .product-row:nth-child(even) .product-screen { order: initial; }
-    .product-copy h3 { font-size: 3rem; }
+    .product-copy h3 { font-size: 2.1rem; }
     .product-screen { width: min(100%, 324px); }
     .screen-showcase { padding: 82px 0; }
     .screen-showcase-head { grid-template-columns: 1fr; gap: 22px; margin-bottom: 38px; }
@@ -1867,7 +1848,7 @@
       <a href="#live">How it works</a>
       <a href="#privacy">Privacy</a>
       <a href="cities/">Cities</a>
-      <a class="button primary" href="#screens">Explore the app</a>
+      <a class="button primary" href="#features">Explore the features</a>
     </nav>
   </div>
 </header>
@@ -1891,7 +1872,7 @@
         <h1 id="hero-title">Kitchen Guru</h1>
         <p class="hero-lede">See where people are playing, share what is happening at your court, and turn a good pickup game into a local crew.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#screens">Explore the app</a>
+          <a class="button primary" href="#features">Explore the features</a>
           <a class="button outline" href="#live">See it in action</a>
         </div>
         <div class="release-line" aria-label="Release status">
@@ -1923,19 +1904,15 @@
     </div>
   </section>
 
-  <section class="product-walkthrough" aria-label="How Kitchen Guru works">
+  <section class="product-walkthrough" id="features" aria-label="How Kitchen Guru works">
     <div class="wrap product-rows">
       <article class="product-row" data-reveal="">
         <div class="product-copy">
           <span class="step-number">01 / FIND</span>
           <h3>Find the court with a game.</h3>
           <p>Open the map and see fresh activity before you load the paddle bag. Kitchen Guru shows where a game may be forming without turning the court into a public roster.</p>
-          <span class="customer-proof">See court activity while player identities stay private</span>
+          <span class="customer-proof">Public court counts do not identify checked-in players</span>
         </div>
-        <figure class="product-screen">
-          <img src="assets/app-screens/kg-app-map-real-390x844.png" width="390" height="844" alt="Kitchen Guru map showing active pickleball courts and player requests" loading="lazy" decoding="async">
-          <figcaption>Find nearby courts and active games</figcaption>
-        </figure>
       </article>
 
       <article class="product-row" data-reveal="">
@@ -1945,10 +1922,6 @@
           <p>Check the latest Court Pulse, see how many players are there, and spot requests for another player. Save the courts that matter so the rest of the city stays quiet.</p>
           <span class="customer-proof">Useful updates from the people who are actually there</span>
         </div>
-        <figure class="product-screen">
-          <img src="assets/app-screens/kg-app-court-390x844.png" width="390" height="844" alt="Kitchen Guru court detail showing activity, player requests, and court alerts" loading="lazy" decoding="async">
-          <figcaption>Check the court before you drive</figcaption>
-        </figure>
       </article>
 
       <article class="product-row" data-reveal="">
@@ -1956,41 +1929,9 @@
           <span class="step-number">03 / CONNECT</span>
           <h3>Keep the people who made it fun.</h3>
           <p>When two players choose to connect, Kitchen Guru gives them a private place to arrange the rematch. No giant group text and no public location trail.</p>
-          <span class="customer-proof">Both players accept before a conversation starts</span>
+          <span class="customer-proof">Direct messages require accepted friendship. Group messages require an accepted invitation.</span>
         </div>
-        <figure class="product-screen">
-          <img src="assets/app-screens/kg-app-chat-390x844.png" width="390" height="844" alt="Kitchen Guru messages for players who chose to connect" loading="lazy" decoding="async">
-          <figcaption>Plan the next game with people you know</figcaption>
-        </figure>
       </article>
-    </div>
-  </section>
-
-  <section class="screen-showcase" id="screens" aria-labelledby="screen-showcase-title">
-    <div class="wrap">
-      <div class="screen-showcase-head" data-reveal="">
-        <div>
-          <div class="eyebrow">Inside Kitchen Guru</div>
-          <h2 id="screen-showcase-title">See the app, one screen at a time.</h2>
-        </div>
-        <p>Explore the main Kitchen Guru views without an automatic slideshow. Choose a screen and take a closer look.</p>
-      </div>
-      <div class="screen-selector">
-        <div class="screen-tabs" role="tablist" aria-label="Kitchen Guru app screens">
-          <button class="screen-tab" type="button" role="tab" aria-selected="true" data-app-screen="map">Map</button>
-          <button class="screen-tab" type="button" role="tab" aria-selected="false" data-app-screen="courts">Courts</button>
-          <button class="screen-tab" type="button" role="tab" aria-selected="false" data-app-screen="court">Court</button>
-          <button class="screen-tab" type="button" role="tab" aria-selected="false" data-app-screen="chat">Messages</button>
-          <button class="screen-tab" type="button" role="tab" aria-selected="false" data-app-screen="you">You</button>
-        </div>
-        <div class="screen-viewer">
-          <img class="is-active" data-app-image="map" src="assets/app-screens/kg-app-map-real-390x844.png" width="390" height="844" alt="Kitchen Guru Map screen" loading="lazy" decoding="async">
-          <img data-app-image="courts" src="assets/app-screens/kg-app-courts-390x844.png" width="390" height="844" alt="Kitchen Guru Courts screen" loading="lazy" decoding="async">
-          <img data-app-image="court" src="assets/app-screens/kg-app-court-390x844.png" width="390" height="844" alt="Kitchen Guru Court detail screen" loading="lazy" decoding="async">
-          <img data-app-image="chat" src="assets/app-screens/kg-app-chat-390x844.png" width="390" height="844" alt="Kitchen Guru Messages screen" loading="lazy" decoding="async">
-          <img data-app-image="you" src="assets/app-screens/kg-app-you-390x844.png" width="390" height="844" alt="Kitchen Guru profile and court alerts screen" loading="lazy" decoding="async">
-        </div>
-      </div>
     </div>
   </section>
 
@@ -2022,11 +1963,11 @@
     <div class="wrap privacy-layout">
       <div class="privacy-copy" data-reveal="">
         <div class="eyebrow">Private by default</div>
-        <h2>The count is public. You are not.</h2>
-        <p>Strangers can see that a court is active. They cannot see your name or follow your location. Identity becomes visible only after both players choose to connect.</p>
+        <h2>Court counts are anonymous.</h2>
+        <p>Public court counts do not identify you. Accepted friends can see check-ins you make visible. Your player name or photo may also appear in invitations, friend requests, shared groups, or content you choose to publish.</p>
         <div class="privacy-points">
           <div class="privacy-point"><strong>Anonymous activity</strong><span>Other players see court activity, not a roster.</span></div>
-          <div class="privacy-point"><strong>Mutual connection</strong><span>Both people accept before names appear.</span></div>
+          <div class="privacy-point"><strong>Mutual connection</strong><span>Friendship becomes active after acceptance.</span></div>
           <div class="privacy-point"><strong>Control stays yours</strong><span>Report, block, export, or delete from the app.</span></div>
         </div>
       </div>
@@ -2034,7 +1975,7 @@
       <div class="connect-stage" data-reveal="">
         <span class="connect-line" aria-hidden="true"></span>
         <div class="player-token left"><div><span class="player-shape" aria-hidden="true"></span><strong>Player one</strong><span>Request sent</span></div></div>
-        <div class="consent-lock"><div><strong>Mutual only</strong><span>Both accept</span></div></div>
+        <div class="consent-lock"><div><strong>Friendship</strong><span>Both accept</span></div></div>
         <div class="player-token right"><div><span class="player-shape" aria-hidden="true"></span><strong>Player two</strong><span>Chooses privately</span></div></div>
       </div>
     </div>
@@ -2069,14 +2010,13 @@
   <section class="plus" id="plus">
     <div class="wrap plus-layout">
       <div class="plus-copy" data-reveal="">
-        <div class="eyebrow">Kitchen Guru+</div>
+        <div class="eyebrow">Kitchen Guru Pro</div>
         <h2>Start free. Keep more good games going.</h2>
-        <p>The core court experience starts free. Kitchen Guru+ adds more ways to organize rematches, manage the alerts you care about, and help build a welcoming local court.</p>
+        <p>The core court experience starts free. The first 200 registered members receive Pro for 12 months from signup, with no automatic paid enrollment afterward. Planned U.S. pricing is $2.99/month or $29.99/year. When purchases become available, the Apple or Google purchase screen will show the final localized price and billing period before confirmation.</p>
       </div>
       <div class="plus-list" data-reveal="">
         <div class="plus-item"><b>Rematches</b><div><strong>Message connected players</strong><span>Sort out the next time and court without another giant group chat.</span></div></div>
-        <div class="plus-item"><b>Control</b><div><strong>Fine-tune court alerts</strong><span>Follow the places that matter and leave the rest quiet.</span></div></div>
-        <div class="plus-item"><b>Community</b><div><strong>Tools for court captains</strong><span>Help regular games stay organized, useful, and welcoming.</span></div></div>
+        <div class="plus-item"><b>Plans</b><div><strong>Group court plans</strong><span>Create and edit a court plan for your group.</span></div></div>
       </div>
     </div>
   </section>
@@ -2089,7 +2029,7 @@
         <p>Kitchen Guru is preparing for iPhone and Android. Explore how it works today, then come back here for the store links.</p>
       </div>
       <div class="release-actions">
-        <a class="button light" href="#screens">Explore the app screens</a>
+        <a class="button light" href="#features">Explore the features</a>
         <a class="button outline" href="cities/">Browse pickleball cities</a>
         <div class="store-status" aria-label="Store release status">
           <div class="store-chip"><span>Release soon</span><strong>Apple App Store</strong></div>
@@ -2110,7 +2050,7 @@
       <div>
         <h4>Explore</h4>
         <a href="#live">How it works</a>
-        <a href="#screens">See the app</a>
+        <a href="#features">Features</a>
         <a href="cities/">City guides</a>
         <a href="#privacy">Privacy by default</a>
       </div>
@@ -2168,17 +2108,6 @@
   }, { threshold: 0.12 });
 
   document.querySelectorAll('[data-reveal]').forEach((item) => revealObserver.observe(item));
-
-  const appScreenTabs = [...document.querySelectorAll('[data-app-screen]')];
-  const appScreenImages = [...document.querySelectorAll('[data-app-image]')];
-
-  appScreenTabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const selected = tab.dataset.appScreen;
-      appScreenTabs.forEach((item) => item.setAttribute('aria-selected', String(item === tab)));
-      appScreenImages.forEach((image) => image.classList.toggle('is-active', image.dataset.appImage === selected));
-    });
-  });
 
   updateHeader();
   updateHeroDepth();

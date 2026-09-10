@@ -178,7 +178,7 @@ function footer(prefix = "../") {
   return `<footer>
   <div class="wrap footer-grid">
     <div><a class="brand" href="${prefix}index.html"><img src="${prefix}assets/logo.svg" alt="" /><span>Kitchen Guru</span></a><p class="note">Live court signal, saved-court alerts, and safer player connections for pickleball.</p></div>
-    <div><strong>Product</strong><a href="${prefix}cities/">Cities</a><a href="${prefix}index.html#alerts">Court alerts</a><a href="${prefix}index.html#plus">Kitchen Guru+</a></div>
+    <div><strong>Product</strong><a href="${prefix}cities/">Cities</a><a href="${prefix}index.html#alerts">Court alerts</a><a href="${prefix}index.html#plus">Kitchen Guru Pro</a></div>
     <div><strong>Legal and help</strong><a href="${prefix}privacy.html">Privacy Policy</a><a href="${prefix}terms.html">Terms</a><a href="${prefix}community.html">Community Guidelines</a><a href="${prefix}deletion.html">Delete your account</a><a href="${prefix}support.html">Support</a></div>
   </div>
 </footer>`;
@@ -204,11 +204,11 @@ function cityFaqItems(city) {
     },
     {
       question: "Will strangers see my name or exact location?",
-      answer: "No. The first layer is anonymous court activity. Names, presence, and direct messages are for mutual friends after both players approve the connection."
+      answer: "Public court counts do not identify you. Accepted friends can see check-ins you make visible. Your player name or photo may also appear in invitations, friend requests, shared groups, or content you choose to publish."
     },
     {
       question: "Is Kitchen Guru free to join?",
-      answer: "The public pages are collecting beta interest. The app starts with a free account path, while Kitchen Guru+ features remain part of the controlled release plan."
+      answer: "The public pages are collecting beta interest. The app starts with a free account path, while Kitchen Guru Pro features remain part of the controlled release plan."
     },
     {
       question: "Who is Kitchen Guru for?",
@@ -326,7 +326,7 @@ function cityPage(city) {
       <div class="kicker">Anonymous first</div>
       <div>
         <h2>Useful court activity without exposing strangers.</h2>
-        <p>Non-friends can see that a court has activity. Names, presence, and messages are for accepted friends after mutual approval.</p>
+        <p>Public court counts do not identify checked-in players. Direct messages require accepted friendship. Group messages require an accepted invitation. Player names or photos can also appear in requests, invitations, shared groups, and public content.</p>
       </div>
     </div>
     <div class="wrap grid-3">

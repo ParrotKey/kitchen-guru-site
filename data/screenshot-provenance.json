@@ -1,0 +1,13 @@
+{
+  "publicHomepageReferencesRetired": true,
+  "nativeAppStoreCapturesBlocked": true,
+  "reason": "Archived screenshots are not verified captures of current authenticated app routes. Public homepage references have been removed, allowing the text/privacy website to proceed independently. Native app-store captures remain a release blocker. No images were replaced.",
+  "assets": [
+    { "file": "assets/app-screens/kg-app-map-real-390x844.png", "sha256": "E396A03C347B8B599AED339854C2C9F1329D6E7C134834310824A35F02080901", "status": "unverified-route-capture", "replacementRoute": "/(tabs)" },
+    { "file": "assets/app-screens/kg-app-courts-390x844.png", "sha256": "CEAD8114F1AE5D73386F12AE161F7E57F5ED7954EEBA4DA3CB3AF2BD3A54A489", "status": "unverified-route-capture", "replacementRoute": "/(tabs)/courts" },
+    { "file": "assets/app-screens/kg-app-court-390x844.png", "sha256": "E6A6FB47D78572214B01C1979A853659A53054D6E9C78CD3BBD686B084B7373B", "status": "unverified-route-capture", "replacementRoute": "/court/[id]" },
+    { "file": "assets/app-screens/kg-app-chat-390x844.png", "sha256": "BCD40B86FB78A84D2404091D0ABF9E949E3B80EDA98C9F6E2EDAEA17FEB8E545", "status": "unverified-route-capture", "replacementRoute": "/(tabs)/chat" },
+    { "file": "assets/app-screens/kg-app-you-390x844.png", "sha256": "72299BB933BE820D68510045D4BB263EC0017B7420086F3E6D54F169316E85E6", "status": "unverified-route-capture", "replacementRoute": "/(tabs)/you" },
+    { "file": "assets/app-screens/kg-app-map-390x844.png", "sha256": "6BD81BBFCA7752577EB726EDEAA2319C4F76DF26143A0227039223B18E9B9596", "status": "unverified-route-capture", "replacementRoute": "/(tabs)" }
+  ]
+}
